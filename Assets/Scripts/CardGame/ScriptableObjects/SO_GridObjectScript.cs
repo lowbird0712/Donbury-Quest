@@ -132,7 +132,7 @@ public class SO_GridObjectScript : ScriptableObject {
             item.animationKey = "Rice Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
             item.cooking.nextObjectName = "밥솥(완료)";
-            item.cooking.originCountDown = 1;
+            item.cooking.originCountDown = 3;
         }
         else if (_objectName == "밥솥(완료)")
             item.sprite = objectSprites[0];
@@ -153,7 +153,7 @@ public class SO_GridObjectScript : ScriptableObject {
         else if (_objectName == "도토리 솥(조리중)") {
             item.animationKey = "Rice Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
-            item.cooking.originCountDown = 1;
+            item.cooking.originCountDown = 3;
         }
         else if (_objectName == "도토리")
             item.sprite = objectSprites[3];
@@ -172,7 +172,7 @@ public class SO_GridObjectScript : ScriptableObject {
             item.animationKey = "Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
             item.cooking.nextObjectName = "규동이 든 냄비(준비)";
-            item.cooking.originCountDown = 1;
+            item.cooking.originCountDown = 3;
         }
         else if (_objectName == "규동이 든 냄비(준비)") {
             item.usableSpellNames = new List<string>(1) { "불지피기" };

@@ -466,6 +466,8 @@ public class CardMngScript : MonoBehaviour {
                 yield break;
             }
             else if (draggingCard.IsFront == true && !SO_cardItem.GetUsable(draggingCard.CardName)) {
+                putCards.Remove(emptyCard);
+                AlignCards(Utils.cardAlignmentDotweenTime, ECardMode.PUTCARDS);
                 StartCoroutine(PutUpCard());
                 yield break;
             }
