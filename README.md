@@ -1,5 +1,5 @@
 # **돈부리 퀘스트 기술 문서**
-[![jp](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.md)
+[![jp](https://img.shields.io/badge/lang-jp-red.svg)](https://github.com/lowbird0712/Donbury-Quest/blob/develop/README.jp.md)
 
 ## **돈부리 퀘스트는 어떤 게임?**
 
