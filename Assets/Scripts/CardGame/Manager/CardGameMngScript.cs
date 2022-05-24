@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+// 테스트 주석
 public class CardGameMngScript : MonoBehaviour {
     public static CardGameMngScript                                                         Inst { get; private set; }
     void Awake() => Inst = this;
