@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridObjectMngScript : MonoBehaviour {  
+public class GridObjectMngScript : MonoBehaviour {
     public static GridObjectMngScript                   Inst { get; private set; }
     void Awake() => Inst = this;
 
