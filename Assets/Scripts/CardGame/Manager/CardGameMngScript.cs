@@ -22,6 +22,8 @@ public class CardGameMngScript : MonoBehaviour {
     bool                                                                                    myTurn;
     Dictionary<string, int>                                                                 stageInfo = new Dictionary<string, int>();
     Dictionary<string, int>                                                                 currentStageInfo = new Dictionary<string, int>();
+    int                                                                                     maxTurnNum;
+    int                                                                                     turnNum = 0;
 
     static public int                                                                       MaxCardCount => Inst.maxCardCount;
     static public int                                                                       StartPutCardCount => Inst.startPutCardCount;
@@ -69,16 +71,21 @@ public class CardGameMngScript : MonoBehaviour {
     void Init(int _stageNum) {
         switch (_stageNum) {
             case 0:
-                // 규동 기본 1개 만들기
+                // 규동 기본 1개 만들기, 제한 10턴
                 stageInfo.Add("규동이 든 냄비(완료)", 1);
                 currentStageInfo.Add("규동이 든 냄비(완료)", 0);
+                maxTurnNum = 2;
                 break;
         }
     }
 
-    void TurnStart() {
+    bool TurnStart() {
         CardMngScript.IncreaseCardPutCount();
-        turnStartPanel.Show();
+        turnNum++;
+        if (turnNum > maxTurnNum)
+            return false;
+        else
+            return true;
     }
 
     bool IsStageClear() {
@@ -106,10 +113,14 @@ public class CardGameMngScript : MonoBehaviour {
         isLoading = true;
 
         myTurn = true;
-        TurnStart();
-        yield return new WaitForSeconds(Utils.turnStartPanelDotweenTime);
-        CardMngScript.AddCardItem();
-        yield return new WaitForSeconds(Utils.cardDrawDotweenTime);
+        if (TurnStart()) {
+            turnStartPanel.Show();
+            yield return new WaitForSeconds(Utils.turnStartPanelDotweenTime);
+            CardMngScript.AddCardItem();
+            yield return new WaitForSeconds(Utils.cardDrawDotweenTime);
+        }
+        else
+            StartCoroutine(GameOverCo());
 
         isLoading = false;
     }
@@ -127,5 +138,10 @@ public class CardGameMngScript : MonoBehaviour {
         else
             StartCoroutine(StartTurnCo());
         isCoroutine.Clear();
+    }
+
+    IEnumerator GameOverCo() {
+        ////
+        yield break;
     }
 }
