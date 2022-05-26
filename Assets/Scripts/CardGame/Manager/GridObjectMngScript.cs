@@ -40,6 +40,7 @@ public class GridObjectMngScript : MonoBehaviour {
         _riceGrid.RemoveObject();
         _donburyGrid.RemoveObject();
         CardGameMngScript.CurrentStageInfo[_menu]++;
+        CardGameMngScript.CurrentStageInfoTextSet();
     }
 
     string DonburyCheck(ref GridObjectScript _donburyGrid) {

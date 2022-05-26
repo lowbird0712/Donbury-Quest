@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class CardGameMngScript : MonoBehaviour {
     public static CardGameMngScript                                                         Inst { get; private set; }
@@ -14,12 +15,16 @@ public class CardGameMngScript : MonoBehaviour {
     [SerializeField] [Tooltip("놓을 수 있는 카드의 최대 개수를 정합니다")] int              maxPutCardCount;
 
     [SerializeField] TurnStartPanelScript                                                   turnStartPanel;
+    [SerializeField] TMP_Text                                                               turnNumText;
+    [SerializeField] TMP_Text                                                               currentStageInfoText;
+
 
     [Header("게임 시스템 변수")]
     public bool                                                                             isLoading;
     public List<bool>                                                                       isCoroutine = new List<bool>();
 
     bool                                                                                    myTurn;
+    Dictionary<string, string>                                                              menuInfo = new Dictionary<string, string>();
     Dictionary<string, int>                                                                 stageInfo = new Dictionary<string, int>();
     Dictionary<string, int>                                                                 currentStageInfo = new Dictionary<string, int>();
     int                                                                                     maxTurnNum;
@@ -49,6 +54,13 @@ public class CardGameMngScript : MonoBehaviour {
         }
     }
 
+    static public void CurrentStageInfoTextSet() {
+        string text = "";
+        foreach (var keyValue in Inst.stageInfo)
+            text += Inst.menuInfo[keyValue.Key] + " : " + Inst.currentStageInfo[keyValue.Key] + "/" + Inst.stageInfo[keyValue.Key] + "\n";
+        Inst.currentStageInfoText.text = text;
+    }
+
     void                StartGame() => StartCoroutine(StartGameCo());
     void                StageClear() => turnStartPanel.Show();
 
@@ -71,17 +83,21 @@ public class CardGameMngScript : MonoBehaviour {
     void Init(int _stageNum) {
         switch (_stageNum) {
             case 0:
-                // 규동 기본 1개 만들기, 제한 10턴
+                // 규동 기본 1개 만들기, 제한 50턴
+                menuInfo.Add("규동이 든 냄비(완료)", "규동 기본");
                 stageInfo.Add("규동이 든 냄비(완료)", 1);
                 currentStageInfo.Add("규동이 든 냄비(완료)", 0);
-                maxTurnNum = 2;
+                maxTurnNum = 50;
+                turnNumText.text = "남은 턴 : " + maxTurnNum.ToString();
                 break;
         }
+        CurrentStageInfoTextSet();
     }
 
     bool TurnStart() {
         CardMngScript.IncreaseCardPutCount();
         turnNum++;
+        turnNumText.text = "남은 턴 : " + (maxTurnNum - turnNum + 1).ToString();
         if (turnNum > maxTurnNum)
             return false;
         else
