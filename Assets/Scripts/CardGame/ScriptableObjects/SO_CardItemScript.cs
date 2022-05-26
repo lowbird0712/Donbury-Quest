@@ -185,9 +185,14 @@ public class SO_CardItemScript : ScriptableObject {
             Debug.LogError("_cardName의 카드는 스펠 카드가 아닙니다!");
 
         CurrentObjectItem   current;
-        List<string>        putCardNames = new List<string>();
-        foreach (var card in CardMngScript.PutCards)
-            putCardNames.Add(card.CardName);
+        List<string>        firstPutCardNames = new List<string>();
+        List<string>        multiPutCardNames = new List<string>();
+        foreach (var card in CardMngScript.PutCards) {
+            if (firstPutCardNames.Contains(card.CardName))
+                multiPutCardNames.Add(card.CardName);
+            else
+                firstPutCardNames.Add(card.CardName);
+        }
         foreach (var gridObject in GridObjectMngScript.GridObjects) {
             current = gridObject.CurrentObjectItem;
             if (current == null)
@@ -196,8 +201,8 @@ public class SO_CardItemScript : ScriptableObject {
                 continue;
             if (!current.currentSpellNames.Contains(_cardName))
                 continue;
-            if (putCardNames.Contains(_cardName)) {
-                putCardNames.Remove(_cardName);
+            if (multiPutCardNames.Contains(_cardName)) {
+                multiPutCardNames.Remove(_cardName);
                 continue;
             }
             return gridObject;
