@@ -338,7 +338,7 @@ public static string GetRandomNeededSpice() {
                 return spice;
             }
         }
-        return "조미료";
+        return "スパイス";
     }
 ```
 
