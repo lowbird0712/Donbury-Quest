@@ -37,8 +37,8 @@ public class GridObjectMngScript : MonoBehaviour {
     }
 
     void MakeDonbury(GridObjectScript _riceGrid, GridObjectScript _donburyGrid, string _menu) {
-        _riceGrid.RemoveObject();
-        _donburyGrid.RemoveObject();
+        StartCoroutine(_riceGrid.RemoveObject());
+        StartCoroutine(_donburyGrid.RemoveObject());
         CardGameMngScript.CurrentStageInfo[_menu]++;
         CardGameMngScript.CurrentStageInfoTextSet();
     }

@@ -153,7 +153,7 @@ public class SO_GridObjectScript : ScriptableObject {
         else if (_objectName == "도토리 솥(조리중)") {
             item.animationKey = "Rice Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
-            item.cooking.originCountDown = 3;
+            item.cooking.originCountDown = 1;
         }
         else if (_objectName == "도토리")
             item.sprite = objectSprites[3];
