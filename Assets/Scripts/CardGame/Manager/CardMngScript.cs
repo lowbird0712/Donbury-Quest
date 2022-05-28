@@ -11,7 +11,7 @@ public class CardMngScript : MonoBehaviour {
 
     [SerializeField] SO_CardItemScript  SO_cardItem;
     [SerializeField] GameObject         cardPrefab;
-    [SerializeField] PanelScript        cardExplainPanel;
+    
     [SerializeField] Transform          cardLeftLine;
     [SerializeField] Transform          cardRightLine;
     [SerializeField] Transform          cardSpawnPoint;
@@ -34,6 +34,7 @@ public class CardMngScript : MonoBehaviour {
     bool                                onCardArea;
     bool                                onCardPutArea;
     bool                                onPutUpCardArea;
+    bool                                onGridObjectArea;
     bool                                cardPuttingUp;
     float                               oneCardPutWidth;
     float                               oneCardPutX;
@@ -54,8 +55,8 @@ public class CardMngScript : MonoBehaviour {
         SetCardState();
 
         if (Input.GetMouseButtonDown(0)) {
-            if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea)
-                cardExplainPanel.ScaleZero();
+            if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea && !onGridObjectArea)
+                CardGameMngScript.CardExplainPanel.ScaleZero();
             else if (cardState == ECardState.CardPutUp) {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
                 int layer = LayerMask.NameToLayer("Card");
@@ -113,7 +114,7 @@ public class CardMngScript : MonoBehaviour {
             Inst.draggingCard = _card;
             Inst.cardDragging = true;
             string explainText = GetCardItem(_card.CardName).explain;
-            Inst.cardExplainPanel.Show(explainText);
+            CardGameMngScript.CardExplainPanel.Show(explainText);
         }
         else if (Inst.cardState == ECardState.CardPutUp) {
             Inst.draggingCard = _card;
@@ -134,7 +135,7 @@ public class CardMngScript : MonoBehaviour {
                 Inst.StartCoroutine(Inst.SwapCard());
         }
         else {
-            Inst.cardExplainPanel.ScaleZero();
+            CardGameMngScript.CardExplainPanel.ScaleZero();
             Inst.StartCoroutine(Inst.PutDownCard());
         }
     }
@@ -325,7 +326,7 @@ public class CardMngScript : MonoBehaviour {
             flag = true;
             cardPuttingUp = false;
             string explainText = GetCardItem(draggingCard.CardName).explain;
-            Inst.cardExplainPanel.Show(explainText);
+            CardGameMngScript.CardExplainPanel.Show(explainText);
         }
 
         if (flag) {
@@ -369,6 +370,9 @@ public class CardMngScript : MonoBehaviour {
             layer = LayerMask.NameToLayer("Card");
             onPutUpCardArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer && x.collider.GetComponent<CardScript>() == draggingCard);
         }
+
+        layer = LayerMask.NameToLayer("Grid Object Area");
+        onGridObjectArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
     }
 
     void SetCardState() {
@@ -429,7 +433,7 @@ public class CardMngScript : MonoBehaviour {
     IEnumerator PutUpCard() {
         CardGameMngScript.Inst.isLoading = true;
 
-        cardExplainPanel.ScaleZero();
+        CardGameMngScript.CardExplainPanel.ScaleZero();
 
         PRS putUpPRS;
         if (draggingCard.IsFront)

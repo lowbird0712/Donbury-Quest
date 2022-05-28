@@ -50,6 +50,7 @@ public class CurrentObjectItem {
 public class ObjectItem {
     public ObjectSubItemTool    tool;
     public ObjectSubItemCooking cooking;
+    public string               explain;
     public bool                 isSpice;
 
     public List<string>         usableSpellNames;
@@ -103,6 +104,7 @@ public class SO_GridObjectScript : ScriptableObject {
         ObjectItem item = new ObjectItem();
         //// ObjectItem
         //item = new ObjectItem();
+        //item.explain = "";
         //item.isSpice = false;
         //item.usableSpellNames = new string[1];
         //item.sprite = objectSprites[0];
@@ -129,6 +131,7 @@ public class SO_GridObjectScript : ScriptableObject {
             item.tool.neededObjectNums = new List<int>(1) { 1 };
         }
         else if (_objectName == "밥솥(조리중)") {
+            item.explain = "다음 오브젝트 : 밥솥(완료)";
             item.animationKey = "Rice Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
             item.cooking.nextObjectName = "밥솥(완료)";
@@ -151,9 +154,10 @@ public class SO_GridObjectScript : ScriptableObject {
             item.tool.neededObjectNums = new List<int>(1) { 1 };
         }
         else if (_objectName == "도토리 솥(조리중)") {
+            item.explain = "조리가 완료될 때 조미료 3장을 패에 추가합니다.";
             item.animationKey = "Rice Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
-            item.cooking.originCountDown = 1;
+            item.cooking.originCountDown = 3;
         }
         else if (_objectName == "도토리")
             item.sprite = objectSprites[3];
@@ -169,6 +173,7 @@ public class SO_GridObjectScript : ScriptableObject {
             item.tool.neededObjectNums = new List<int>(1) { 1 };
         }
         else if (_objectName == "냄비(조리중)") {
+            item.explain = "다음 오브젝트 : 규동이 든 냄비(준비)";
             item.animationKey = "Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
             item.cooking.nextObjectName = "규동이 든 냄비(준비)";
@@ -183,6 +188,7 @@ public class SO_GridObjectScript : ScriptableObject {
             item.tool.neededObjectNums = new List<int>(1) { 1 };
         }
         else if (_objectName == "규동이 든 냄비(조리중)") {
+            item.explain = "다음 오브젝트 : 규동이 든 냄비(완료)";
             item.animationKey = "Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
             item.cooking.nextObjectName = "규동이 든 냄비(완료)";

@@ -776,7 +776,8 @@ GameObject:
   m_Component:
   - component: {fileID: 213780127}
   - component: {fileID: 213780128}
-  m_Layer: 0
+  - component: {fileID: 213780129}
+  m_Layer: 12
   m_Name: Grid Object (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,6 +819,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 871036517}
   objectRenderer: {fileID: 871036518}
   countDownRenderer: {fileID: 507612945}
+--- !u!61 &213780129
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213780126}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &231403088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SO_cardItem: {fileID: 11400000, guid: 92f455ef27166f74bafd7598fdfb3cdc, type: 2}
   cardPrefab: {fileID: 6728359721578794122, guid: e5c1322a6e273b043bf5be30811b7084, type: 3}
-  cardExplainPanel: {fileID: 666314035}
   cardLeftLine: {fileID: 1754900170}
   cardRightLine: {fileID: 439720429}
   cardSpawnPoint: {fileID: 1658479159}
@@ -1174,7 +1200,8 @@ GameObject:
   m_Component:
   - component: {fileID: 362482662}
   - component: {fileID: 362482663}
-  m_Layer: 0
+  - component: {fileID: 362482664}
+  m_Layer: 12
   m_Name: Grid Object (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1216,6 +1243,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 865539998}
   objectRenderer: {fileID: 865539999}
   countDownRenderer: {fileID: 2126436333}
+--- !u!61 &362482664
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362482661}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &387539889
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,7 +2395,8 @@ GameObject:
   m_Component:
   - component: {fileID: 661116558}
   - component: {fileID: 661116559}
-  m_Layer: 0
+  - component: {fileID: 661116560}
+  m_Layer: 12
   m_Name: Grid Object (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2384,6 +2438,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 420047800}
   objectRenderer: {fileID: 420047801}
   countDownRenderer: {fileID: 1067444002}
+--- !u!61 &661116560
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661116557}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &666314033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,7 +2564,8 @@ GameObject:
   m_Component:
   - component: {fileID: 691707777}
   - component: {fileID: 691707778}
-  m_Layer: 0
+  - component: {fileID: 691707779}
+  m_Layer: 12
   m_Name: Grid Object (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2526,6 +2607,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 750236014}
   objectRenderer: {fileID: 750236015}
   countDownRenderer: {fileID: 1140903899}
+--- !u!61 &691707779
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691707776}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &695961925
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,7 +3458,8 @@ GameObject:
   m_Component:
   - component: {fileID: 874798280}
   - component: {fileID: 874798281}
-  m_Layer: 0
+  - component: {fileID: 874798282}
+  m_Layer: 12
   m_Name: Grid Object (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3393,6 +3501,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 231403091}
   objectRenderer: {fileID: 231403092}
   countDownRenderer: {fileID: 852346010}
+--- !u!61 &874798282
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874798279}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &887400322
 GameObject:
   m_ObjectHideFlags: 0
@@ -3744,7 +3878,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1044151199}
   - component: {fileID: 1044151200}
-  m_Layer: 0
+  - component: {fileID: 1044151201}
+  m_Layer: 12
   m_Name: Grid Object (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3786,6 +3921,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 695961928}
   objectRenderer: {fileID: 695961929}
   countDownRenderer: {fileID: 1012440301}
+--- !u!61 &1044151201
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044151198}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1056660595
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,6 +4385,7 @@ MonoBehaviour:
   turnStartPanel: {fileID: 616752613}
   turnNumText: {fileID: 1979631240}
   currentStageInfoText: {fileID: 1189632023}
+  cardExplainPanel: {fileID: 666314035}
   isLoading: 0
   isCoroutine: 
 --- !u!4 &1087041824
@@ -4615,7 +4777,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1174483788}
   - component: {fileID: 1174483787}
-  m_Layer: 0
+  - component: {fileID: 1174483789}
+  m_Layer: 12
   m_Name: Grid Object (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4657,6 +4820,32 @@ Transform:
   m_Father: {fileID: 1722131879}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1174483789
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174483786}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1189632021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,7 +5187,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1228068244}
   - component: {fileID: 1228068245}
-  m_Layer: 0
+  - component: {fileID: 1228068246}
+  m_Layer: 12
   m_Name: Grid Object (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5040,6 +5230,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 1056660598}
   objectRenderer: {fileID: 1056660599}
   countDownRenderer: {fileID: 1911779003}
+--- !u!61 &1228068246
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228068243}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1229489760
 GameObject:
   m_ObjectHideFlags: 0
@@ -6005,7 +6221,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1421901577}
   - component: {fileID: 1421901578}
-  m_Layer: 0
+  - component: {fileID: 1421901579}
+  m_Layer: 12
   m_Name: Grid Object (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6047,6 +6264,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 1219106916}
   objectRenderer: {fileID: 1219106917}
   countDownRenderer: {fileID: 282333617}
+--- !u!61 &1421901579
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421901576}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1445445523
 GameObject:
   m_ObjectHideFlags: 0
@@ -6139,7 +6382,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1451476002}
   - component: {fileID: 1451476003}
-  m_Layer: 0
+  - component: {fileID: 1451476004}
+  m_Layer: 12
   m_Name: Grid Object (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6181,6 +6425,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 198254123}
   objectRenderer: {fileID: 198254124}
   countDownRenderer: {fileID: 1348610197}
+--- !u!61 &1451476004
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451476001}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1507408828
 GameObject:
   m_ObjectHideFlags: 0
@@ -6997,7 +7267,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1841510550}
   - component: {fileID: 1841510551}
-  m_Layer: 0
+  - component: {fileID: 1841510552}
+  m_Layer: 12
   m_Name: Grid Object (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7039,6 +7310,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 1574439782}
   objectRenderer: {fileID: 1574439783}
   countDownRenderer: {fileID: 1120115195}
+--- !u!61 &1841510552
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841510549}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1869181879
 GameObject:
   m_ObjectHideFlags: 0
@@ -7049,7 +7346,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1869181880}
   - component: {fileID: 1869181881}
-  m_Layer: 0
+  - component: {fileID: 1869181882}
+  m_Layer: 12
   m_Name: Grid Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7091,6 +7389,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 968075216}
   objectRenderer: {fileID: 968075217}
   countDownRenderer: {fileID: 388168983}
+--- !u!61 &1869181882
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869181879}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1873545516
 GameObject:
   m_ObjectHideFlags: 0
@@ -7183,7 +7507,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1878145031}
   - component: {fileID: 1878145032}
-  m_Layer: 0
+  - component: {fileID: 1878145033}
+  m_Layer: 12
   m_Name: Grid Object (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7225,6 +7550,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 2006919484}
   objectRenderer: {fileID: 2006919485}
   countDownRenderer: {fileID: 609935460}
+--- !u!61 &1878145033
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878145030}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1892530970
 GameObject:
   m_ObjectHideFlags: 0
@@ -7317,7 +7668,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1907637986}
   - component: {fileID: 1907637987}
-  m_Layer: 0
+  - component: {fileID: 1907637988}
+  m_Layer: 12
   m_Name: Grid Object (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7359,6 +7711,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 1087849481}
   objectRenderer: {fileID: 1087849482}
   countDownRenderer: {fileID: 735544175}
+--- !u!61 &1907637988
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907637985}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1909548593
 GameObject:
   m_ObjectHideFlags: 0
@@ -7773,7 +8151,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1941499668}
   - component: {fileID: 1941499669}
-  m_Layer: 0
+  - component: {fileID: 1941499670}
+  m_Layer: 12
   m_Name: Grid Object (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7815,6 +8194,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 101344193}
   objectRenderer: {fileID: 101344194}
   countDownRenderer: {fileID: 1020681456}
+--- !u!61 &1941499670
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941499667}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1974114552
 GameObject:
   m_ObjectHideFlags: 0
@@ -7825,7 +8230,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1974114553}
   - component: {fileID: 1974114554}
-  m_Layer: 0
+  - component: {fileID: 1974114555}
+  m_Layer: 12
   m_Name: Grid Object (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7867,6 +8273,32 @@ MonoBehaviour:
   objectAnimator: {fileID: 1229489763}
   objectRenderer: {fileID: 1229489764}
   countDownRenderer: {fileID: 1356668240}
+--- !u!61 &1974114555
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974114552}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1979631238
 GameObject:
   m_ObjectHideFlags: 0

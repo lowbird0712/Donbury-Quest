@@ -17,6 +17,7 @@ public class CardGameMngScript : MonoBehaviour {
     [SerializeField] TurnStartPanelScript                                                   turnStartPanel;
     [SerializeField] TMP_Text                                                               turnNumText;
     [SerializeField] TMP_Text                                                               currentStageInfoText;
+    [SerializeField] PanelScript                                                            cardExplainPanel;
 
 
     [Header("게임 시스템 변수")]
@@ -36,6 +37,7 @@ public class CardGameMngScript : MonoBehaviour {
     static public bool                                                                      MyTurn => Inst.myTurn;
     static public Dictionary<string, int>                                                   StageInfo => Inst.stageInfo;
     static public Dictionary<string, int>                                                   CurrentStageInfo => Inst.currentStageInfo;
+    static public PanelScript                                                               CardExplainPanel => Inst.cardExplainPanel;
 
     public static List<bool> IsCoroutine => Inst.isCoroutine;
 
@@ -142,6 +144,8 @@ public class CardGameMngScript : MonoBehaviour {
     }
 
     IEnumerator EndTurnCo() {
+        isLoading = true;
+
         myTurn = false;
         isCoroutine.Add(true);
         isCoroutine.Add(true);

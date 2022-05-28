@@ -40,6 +40,39 @@ public class GridObjectScript : MonoBehaviour {
         }
     }
 
+    private void OnMouseDown() {
+        if (hasObject && !CardGameMngScript.Inst.isLoading) {
+            ObjectItem item = GridObjectMngScript.GridObjectSO.GetObjectItem(objectName);
+            string text = "";
+            text += objectName + "\n";
+            if (item.tool != null) {
+                if (item.tool.neededSpiceNames != null) {
+                    text += "필요한 조미료 :\n";
+                    foreach (var spiceName in item.tool.neededSpiceNames) {
+                        if (currentObjectItem.currentSpiceNames.Contains(spiceName))
+                            text += spiceName + "(O)" + "\n";
+                        else
+                            text += spiceName + "\n";
+                    }
+                }
+                if (currentObjectItem.currentObjectNums.Count != 0) {
+                    text += "필요한 재료 :\n";
+                    for (int i = 0; i < currentObjectItem.currentObjectNums.Count; i++)
+                        text += $"{item.tool.neededObjectNames[i]}({currentObjectItem.currentObjectNums[i]}/{item.tool.neededObjectNums[i]})\n";
+                }
+                if (currentObjectItem.currentSpellNames.Count != 0) {
+                    text += "사용 가능한 스펠 카드 :\n";
+                    foreach (var spellName in currentObjectItem.currentSpellNames)
+                        text += spellName + "\n";
+                }
+            }
+            else if (countDown != -1)
+                text += "남은 카운트다운 : " + countDown + "\n";
+            text += "\n\n" + item.explain;
+            CardGameMngScript.CardExplainPanel.Show(text);
+        }
+    }
+
     public void UseSpell(string _spellName) => effectAnimator.SetTrigger(CardMngScript.CardItemSO.GetSpellAnimationKey(_spellName));
 
     public void StartCooking() {
@@ -107,7 +140,7 @@ public class GridObjectScript : MonoBehaviour {
         }
         else {
             objectRenderer.sprite = CardMngScript.CardItemSO.GetCardItem(_objectName).sprite;
-            objectName = "일반 도토리 오브젝트";
+            objectName = _objectName;
         }
 
         hasObject = true;
