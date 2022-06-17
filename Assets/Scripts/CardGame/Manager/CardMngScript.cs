@@ -35,6 +35,7 @@ public class CardMngScript : MonoBehaviour {
     bool                                onCardPutArea;
     bool                                onPutUpCardArea;
     bool                                onGridObjectArea;
+    bool                                onUIArea;
     bool                                cardPuttingUp;
     float                               oneCardPutWidth;
     float                               oneCardPutX;
@@ -57,7 +58,7 @@ public class CardMngScript : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea && !onGridObjectArea)
                 CardGameMngScript.CardExplainPanel.ScaleZero();
-            else if (cardState == ECardState.CardPutUp) {
+            else if (cardState == ECardState.CardPutUp && !onUIArea) {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
                 int layer = LayerMask.NameToLayer("Card");
                 if (!Array.Exists(hits, x => x.collider.gameObject.layer == layer))
@@ -373,6 +374,11 @@ public class CardMngScript : MonoBehaviour {
 
         layer = LayerMask.NameToLayer("Grid Object Area");
         onGridObjectArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
+
+        layer = LayerMask.NameToLayer("UI");
+        onUIArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
+        if (onUIArea)
+            Debug.Log("Detected");
     }
 
     void SetCardState() {

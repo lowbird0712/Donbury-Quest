@@ -28,6 +28,7 @@ public class CardGameMngScript : MonoBehaviour {
     Dictionary<string, string>                                                              menuInfo = new Dictionary<string, string>();
     Dictionary<string, int>                                                                 stageInfo = new Dictionary<string, int>();
     Dictionary<string, int>                                                                 currentStageInfo = new Dictionary<string, int>();
+    string                                                                                  recipeString;
     int                                                                                     maxTurnNum;
     int                                                                                     turnNum = 0;
 
@@ -65,6 +66,7 @@ public class CardGameMngScript : MonoBehaviour {
 
     void                StartGame() => StartCoroutine(StartGameCo());
     void                StageClear() => turnStartPanel.Show();
+    public void         ShowRecipeString() => CardExplainPanel.Show(recipeString);
 
     void CheatKey() {
         if (Input.GetKeyDown(KeyCode.O))
@@ -91,6 +93,9 @@ public class CardGameMngScript : MonoBehaviour {
                 currentStageInfo.Add("규동이 든 냄비(완료)", 0);
                 maxTurnNum = 50;
                 turnNumText.text = "남은 턴 : " + maxTurnNum.ToString();
+                recipeString = "규동 기본 레시피\n" +
+                    "1. 냄비에 양파, 쇼유, 생강, 노랑도토리주, 해초도토리를 넣고 끓인다.\n" +
+                    "2. 끓인 후의 냄비에 우삼겹을 넣고 다시 끓인다.";
                 break;
         }
         CurrentStageInfoTextSet();
