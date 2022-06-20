@@ -42,6 +42,7 @@ public class CardMngScript : MonoBehaviour {
     int                                 cardPutCount;
 
     public static SO_CardItemScript     CardItemSO => Inst.SO_cardItem;
+    public static CardScript            EmptyCard => Inst.emptyCard;
     public static string                DeckName { set => Inst.deckName = value; }
     public static List<string>          CardBuffer => Inst.cardBuffer;
     public static List<CardScript>      PutCards => Inst.putCards;
@@ -154,9 +155,19 @@ public class CardMngScript : MonoBehaviour {
         if (Inst.cardPutCount == CardGameMngScript.MaxPutCardCount)
             return;
 
-        Inst.cardPutCount += 1;
+        Inst.cardPutCount++;
         Inst.cardPutCover.GetComponent<CardPutCoverScript>().RightSwipe();
         Inst.cardPutRightLine.position += Vector3.right * Inst.oneCardPutX * 2;
+    }
+
+    public static int GetPlacablePutCardNum() {
+        int cardNum = 0;
+        foreach (var card in PutCards) {
+            if (card != Inst.emptyCard && CardItemSO.GetCardItem(card.CardName).type != SO_CardType.Placable)
+                continue;
+            cardNum++;
+        }
+        return cardNum;
     }
 
     public static IEnumerator ExecuteCardsCo() {
@@ -187,21 +198,16 @@ public class CardMngScript : MonoBehaviour {
 
     void SetupCardBuffer() {
         if (deckName == "규동 기본") {
-            cardBuffer = new List<string>(15); ////15
+            cardBuffer = new List<string>(10); ////10
             cardBuffer.Add("밥솥");
             cardBuffer.Add("밥솥");
-            cardBuffer.Add("밥솥");
-            cardBuffer.Add("쌀");
             cardBuffer.Add("쌀");
             cardBuffer.Add("쌀");
             cardBuffer.Add("불지피기");
             cardBuffer.Add("불지피기");
             cardBuffer.Add("불지피기");
             cardBuffer.Add("냄비");
-            cardBuffer.Add("냄비");
             cardBuffer.Add("양파");
-            cardBuffer.Add("양파");
-            cardBuffer.Add("우삼겹");
             cardBuffer.Add("우삼겹");
 
             for (int i = 0; i < cardBuffer.Count; i++) {
@@ -377,8 +383,6 @@ public class CardMngScript : MonoBehaviour {
 
         layer = LayerMask.NameToLayer("UI");
         onUIArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
-        if (onUIArea)
-            Debug.Log("Detected");
     }
 
     void SetCardState() {
@@ -409,20 +413,14 @@ public class CardMngScript : MonoBehaviour {
                 break;
         }
 
-        if (cards.Count == maxCardCount)
-            return;
-
         if (!cards.Contains(emptyCard))
             cards.Add(emptyCard);
 
         Vector3 tmp = emptyCard.transform.position;
         tmp.x = _x;
         emptyCard.transform.position = tmp;
-
-        int index = GetEmptyCardIndex(_mode);
         cards.Sort((card1, card2) => card1.transform.position.x.CompareTo(card2.transform.position.x));
-        if (GetEmptyCardIndex(_mode) != index || GetEmptyCardIndex(_mode) == cards.Count - 1)
-            AlignCards(Utils.cardAlignmentDotweenTime, _mode);
+        AlignCards(Utils.cardAlignmentDotweenTime, _mode);
     }
 
     int GetEmptyCardIndex(ECardMode _mode) {

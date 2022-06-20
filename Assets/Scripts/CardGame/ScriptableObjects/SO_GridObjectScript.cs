@@ -31,14 +31,21 @@ public class CurrentObjectItem {
     public void CurrentSpellNameUpdate() {
         ObjectItem          objectItem = GridObjectMngScript.GridObjectSO.GetObjectItem(objectName);
         ObjectSubItemTool   tool = objectItem.tool;
+        bool                neededObjectFlag = false;
         foreach (var spellName in objectItem.usableSpellNames) {
             if (spellName == "불지피기" || spellName == "도토리 굽기") {
                 if (tool.neededSpiceNames != null && tool.neededSpiceNames.Count != currentSpiceNames.Count)
                     continue;
                 if (tool.neededObjectNames != null) {
                     for (int i = 0; i < tool.neededObjectNames.Count; i++) {
-                        if (tool.neededObjectNums[i] != currentObjectNums[i])
-                            continue;
+                        if (tool.neededObjectNums[i] != currentObjectNums[i]) {
+                            neededObjectFlag = true;
+                            break;
+                        }
+                    }
+                    if (neededObjectFlag) {
+                        neededObjectFlag = false;
+                        continue;
                     }
                 }
             }
@@ -129,6 +136,7 @@ public class SO_GridObjectScript : ScriptableObject {
             item.tool.nextObjectName = "밥솥(조리중)";
             item.tool.neededObjectNames = new List<string>(1) { "쌀" };
             item.tool.neededObjectNums = new List<int>(1) { 1 };
+            item.tool.neededSpiceNames = new List<string>(1) { "도토리주" };
         }
         else if (_objectName == "밥솥(조리중)") {
             item.explain = "다음 오브젝트 : 밥솥(완료)";
@@ -143,6 +151,10 @@ public class SO_GridObjectScript : ScriptableObject {
             item.sprite = objectSprites[1];
         else if (_objectName == "조미료")
             item.sprite = objectSprites[11];
+        else if (_objectName == "도토리주") {
+            item.isSpice = true;
+            item.sprite = objectSprites[12];
+        }
 
         // 기본 도토리
         else if (_objectName == "도토리 솥(준비)") {
@@ -212,10 +224,6 @@ public class SO_GridObjectScript : ScriptableObject {
             item.isSpice = true;
             item.sprite = objectSprites[9];
         }
-        //else if (_objectName == "설탕") {
-        //    item.isSpice = true;
-        //    item.sprite = objectSprites[10];
-        //}
         else if (_objectName == "해초 도토리") {
             item.isSpice = true;
             item.sprite = objectSprites[10];
@@ -226,8 +234,8 @@ public class SO_GridObjectScript : ScriptableObject {
 
     public void SetUp(string _deckName) {
         if (_deckName == "규동 기본") {
-            objectNames = new string[20];
-            objectItems = new ObjectItem[20];
+            objectNames = new string[21];
+            objectItems = new ObjectItem[21];
 
             // 기본
             objectNames[0] = "밥솥(준비)";
@@ -240,6 +248,8 @@ public class SO_GridObjectScript : ScriptableObject {
             objectItems[3] = SetUpItem("쌀");
             objectNames[19] = "조미료";
             objectItems[19] = SetUpItem("조미료");
+            objectNames[20] = "도토리주";
+            objectItems[20] = SetUpItem("도토리주");
 
             // 기본 도토리
             objectNames[4] = "도토리 솥(준비)";

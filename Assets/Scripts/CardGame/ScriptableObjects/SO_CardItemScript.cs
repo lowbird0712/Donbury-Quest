@@ -180,18 +180,17 @@ public class SO_CardItemScript : ScriptableObject {
         CardMngScript.AddCardItem();
     }
 
-    GridObjectScript GetSpellNextGridObject(string _cardName) {
+    bool CanUseSpell(string _cardName) {
         if (GetCardItem(_cardName).type != SO_CardType.Spell)
             Debug.LogError("_cardName의 카드는 스펠 카드가 아닙니다!");
 
         CurrentObjectItem   current;
-        List<string>        firstPutCardNames = new List<string>();
-        List<string>        multiPutCardNames = new List<string>();
+        int                 spellNum = 0;
+        int                 objectNum = 0;
         foreach (var card in CardMngScript.PutCards) {
-            if (firstPutCardNames.Contains(card.CardName))
-                multiPutCardNames.Add(card.CardName);
-            else
-                firstPutCardNames.Add(card.CardName);
+            if (card.CardName != _cardName)
+                continue;
+            spellNum++;
         }
         foreach (var gridObject in GridObjectMngScript.GridObjects) {
             current = gridObject.CurrentObjectItem;
@@ -201,10 +200,25 @@ public class SO_CardItemScript : ScriptableObject {
                 continue;
             if (!current.currentSpellNames.Contains(_cardName))
                 continue;
-            if (multiPutCardNames.Contains(_cardName)) {
-                multiPutCardNames.Remove(_cardName);
+            objectNum++;
+        }
+
+        return spellNum + 1 <= objectNum;
+    }
+
+    GridObjectScript GetSpellNextGridObject(string _cardName) {
+        if (GetCardItem(_cardName).type != SO_CardType.Spell)
+            Debug.LogError("_cardName의 카드는 스펠 카드가 아닙니다!");
+
+        CurrentObjectItem current;
+        foreach (var gridObject in GridObjectMngScript.GridObjects) {
+            current = gridObject.CurrentObjectItem;
+            if (current == null)
                 continue;
-            }
+            if (current.currentSpellNames == null)
+                continue;
+            if (!current.currentSpellNames.Contains(_cardName))
+                continue;
             return gridObject;
         }
         return null;
@@ -374,10 +388,10 @@ public class SO_CardItemScript : ScriptableObject {
 
     public bool GetUsable(string _cardName) {
         SO_CardType type = GetCardItem(_cardName).type;
-        if (type == SO_CardType.Placable && GridObjectMngScript.NextGridObject != null &&
-            GridObjectMngScript.NextGridObjectIndex + CardMngScript.PutCards.Count > GridObjectMngScript.GridObjects.Count)
+        if (type == SO_CardType.Placable && (GridObjectMngScript.NextGridObject == null ||
+            GridObjectMngScript.NextGridObjectIndex + CardMngScript.GetPlacablePutCardNum() >= GridObjectMngScript.GridObjects.Count))
             return false;
-        else if (type == SO_CardType.Spell && GetSpellNextGridObject(_cardName) == null)
+        else if (type == SO_CardType.Spell && !CanUseSpell(_cardName))
             return false;
         return true;
     }

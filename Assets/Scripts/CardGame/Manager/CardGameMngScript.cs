@@ -89,7 +89,7 @@ public class CardGameMngScript : MonoBehaviour {
             case 0:
                 // 규동 기본 1개 만들기, 제한 50턴
                 menuInfo.Add("규동이 든 냄비(완료)", "규동 기본");
-                stageInfo.Add("규동이 든 냄비(완료)", 1);
+                stageInfo.Add("규동이 든 냄비(완료)", 3);
                 currentStageInfo.Add("규동이 든 냄비(완료)", 0);
                 maxTurnNum = 50;
                 turnNumText.text = "남은 턴 : " + maxTurnNum.ToString();
