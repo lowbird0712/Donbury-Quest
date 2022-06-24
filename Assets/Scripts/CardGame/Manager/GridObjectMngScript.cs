@@ -38,12 +38,18 @@ public class GridObjectMngScript : MonoBehaviour {
 
     void MakeDonbury(GridObjectScript _riceGrid, GridObjectScript _donburyGrid, string _menu) {
         StartCoroutine(_riceGrid.RemoveObject());
-        StartCoroutine(_donburyGrid.RemoveObject());
+        if (_donburyGrid != null)
+            StartCoroutine(_donburyGrid.RemoveObject());
         CardGameMngScript.CurrentStageInfo[_menu]++;
         CardGameMngScript.CurrentStageInfoTextSet();
     }
 
     string DonburyCheck(ref GridObjectScript _donburyGrid) {
+        if (CardGameMngScript.StageNum <= 2)
+            return "";
+        else if (CardGameMngScript.StageNum <= 5)
+            return "";
+
         List<string> menus = new List<string>(CardGameMngScript.StageInfo.Keys);
         string objectName = null;
         foreach (var gridObject in gridObjects) {

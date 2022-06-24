@@ -136,7 +136,8 @@ public class SO_GridObjectScript : ScriptableObject {
             item.tool.nextObjectName = "밥솥(조리중)";
             item.tool.neededObjectNames = new List<string>(1) { "쌀" };
             item.tool.neededObjectNums = new List<int>(1) { 1 };
-            item.tool.neededSpiceNames = new List<string>(1) { "도토리주" };
+            if (CardGameMngScript.StageNum >= 3)
+                item.tool.neededSpiceNames = new List<string>(1) { "도토리주" };
         }
         else if (_objectName == "밥솥(조리중)") {
             item.explain = "다음 오브젝트 : 밥솥(완료)";
@@ -169,7 +170,7 @@ public class SO_GridObjectScript : ScriptableObject {
             item.explain = "조리가 완료될 때 조미료 3장을 패에 추가합니다.";
             item.animationKey = "Rice Pot Cooking";
             item.cooking = new ObjectSubItemCooking();
-            item.cooking.originCountDown = 3;
+            item.cooking.originCountDown = 2;
         }
         else if (_objectName == "도토리")
             item.sprite = objectSprites[3];
@@ -233,7 +234,46 @@ public class SO_GridObjectScript : ScriptableObject {
     }
 
     public void SetUp(string _deckName) {
-        if (_deckName == "규동 기본") {
+        if (_deckName == "밥") {
+            objectNames = new string[4];
+            objectItems = new ObjectItem[4];
+
+            objectNames[0] = "밥솥(준비)";
+            objectItems[0] = SetUpItem("밥솥(준비)");
+            objectNames[1] = "밥솥(조리중)";
+            objectItems[1] = SetUpItem("밥솥(조리중)");
+            objectNames[2] = "밥솥(완료)";
+            objectItems[2] = SetUpItem("밥솥(완료)");
+            objectNames[3] = "쌀";
+            objectItems[3] = SetUpItem("쌀");
+        }
+        if (_deckName == "맛있는 밥") {
+            objectNames = new string[10];
+            objectItems = new ObjectItem[10];
+
+            objectNames[0] = "밥솥(준비)";
+            objectItems[0] = SetUpItem("밥솥(준비)");
+            objectNames[1] = "밥솥(조리중)";
+            objectItems[1] = SetUpItem("밥솥(조리중)");
+            objectNames[2] = "밥솥(완료)";
+            objectItems[2] = SetUpItem("밥솥(완료)");
+            objectNames[3] = "쌀";
+            objectItems[3] = SetUpItem("쌀");
+            objectNames[4] = "조미료";
+            objectItems[4] = SetUpItem("조미료");
+            objectNames[5] = "도토리주";
+            objectItems[5] = SetUpItem("도토리주");
+
+            objectNames[6] = "도토리 솥(준비)";
+            objectItems[6] = SetUpItem("도토리 솥(준비)");
+            objectNames[7] = "도토리 솥(조리중)";
+            objectItems[7] = SetUpItem("도토리 솥(조리중)");
+            objectNames[8] = "도토리 솥(완료)";
+            objectItems[8] = SetUpItem("도토리 솥(완료)");
+            objectNames[9] = "도토리";
+            objectItems[9] = SetUpItem("도토리");
+        }
+        else if (_deckName == "규동 기본") {
             objectNames = new string[21];
             objectItems = new ObjectItem[21];
 
@@ -282,11 +322,9 @@ public class SO_GridObjectScript : ScriptableObject {
             objectItems[16] = SetUpItem("쇼유");
             objectNames[17] = "노랑도토리주";
             objectItems[17] = SetUpItem("노랑도토리주");
-            //objectNames[18] = "설탕";
-            //objectItems[18] = SetUpItem("설탕");
             objectNames[18] = "해초 도토리";
             objectItems[18] = SetUpItem("해초 도토리");
-            //// 19번 인덱스에는 "조미료" 오브젝트를 설정했음
+            //// 19, 20번 인덱스에는 "조미료", "도토리주" 오브젝트를 설정했음
         }
     }
 

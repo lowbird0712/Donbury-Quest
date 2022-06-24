@@ -259,7 +259,38 @@ public class SO_CardItemScript : ScriptableObject {
     }
 
     public void SetUp(string _deckName) {
-        if (_deckName == "규동 기본") {
+        if (_deckName == "밥") {
+            cardNames = new string[3];
+            cardItems = new CardItem[3];
+
+            cardNames[0] = "밥솥";
+            cardItems[0] = SetUpItem("밥솥");
+            cardNames[1] = "불지피기";
+            cardItems[1] = SetUpItem("불지피기");
+            cardNames[2] = "쌀";
+            cardItems[2] = SetUpItem("쌀");
+        }
+        if (_deckName == "맛있는 밥") {
+            cardNames = new string[7];
+            cardItems = new CardItem[7];
+
+            cardNames[0] = "밥솥";
+            cardItems[0] = SetUpItem("밥솥");
+            cardNames[1] = "불지피기";
+            cardItems[1] = SetUpItem("불지피기");
+            cardNames[2] = "쌀";
+            cardItems[2] = SetUpItem("쌀");
+
+            cardNames[3] = "도토리 솥";
+            cardItems[3] = SetUpItem("도토리 솥");
+            cardNames[4] = "도토리 굽기";
+            cardItems[4] = SetUpItem("도토리 굽기");
+            cardNames[5] = "도토리";
+            cardItems[5] = SetUpItem("도토리");
+            cardNames[6] = "조미료";
+            cardItems[6] = SetUpItem("조미료");
+        }
+        else if (_deckName == "규동 기본") {
             cardNames = new string[14];
             cardItems = new CardItem[14];
 

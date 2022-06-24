@@ -74,6 +74,24 @@ public class CardMngScript : MonoBehaviour {
     public static void Init(int _stageNum) {
         switch (_stageNum) {
             case 0:
+                Inst.deckName = "밥";
+                break;
+            case 1:
+                Inst.deckName = "밥";
+                break;
+            case 2:
+                Inst.deckName = "밥";
+                break;
+            case 3:
+                Inst.deckName = "맛있는 밥";
+                break;
+            case 4:
+                Inst.deckName = "맛있는 밥";
+                break;
+            case 5:
+                Inst.deckName = "맛있는 밥";
+                break;
+            case 6:
                 Inst.deckName = "규동 기본";
                 break;
         }
@@ -133,7 +151,7 @@ public class CardMngScript : MonoBehaviour {
             Inst.StartCoroutine(Inst.PutUpCard());
         else if (Inst.cardState == ECardState.CardPutUp && (!Inst.onCardArea && !Inst.onCardPutArea)) {
             RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
-            if (!Array.Exists(hits, x => x.collider.gameObject.layer == LayerMask.NameToLayer("Grid")))
+            if (CardGameMngScript.StageNum >= 3 && !Array.Exists(hits, x => x.collider.gameObject.layer == LayerMask.NameToLayer("Grid")))
                 Inst.StartCoroutine(Inst.SwapCard());
         }
         else {
@@ -197,8 +215,29 @@ public class CardMngScript : MonoBehaviour {
     }
 
     void SetupCardBuffer() {
-        if (deckName == "규동 기본") {
-            cardBuffer = new List<string>(10); ////10
+        if (deckName == "밥") {
+            cardBuffer = new List<string>(6);
+            cardBuffer.Add("밥솥");
+            cardBuffer.Add("밥솥");
+            cardBuffer.Add("쌀");
+            cardBuffer.Add("쌀");
+            cardBuffer.Add("불지피기");
+            cardBuffer.Add("불지피기");
+        }
+        if (deckName == "맛있는 밥") {
+            cardBuffer = new List<string>(9);
+            cardBuffer.Add("밥솥");
+            cardBuffer.Add("밥솥");
+            cardBuffer.Add("밥솥");
+            cardBuffer.Add("쌀");
+            cardBuffer.Add("쌀");
+            cardBuffer.Add("쌀");
+            cardBuffer.Add("불지피기");
+            cardBuffer.Add("불지피기");
+            cardBuffer.Add("불지피기");
+        }
+        else if (deckName == "규동 기본") {
+            cardBuffer = new List<string>(10);
             cardBuffer.Add("밥솥");
             cardBuffer.Add("밥솥");
             cardBuffer.Add("쌀");
@@ -209,13 +248,13 @@ public class CardMngScript : MonoBehaviour {
             cardBuffer.Add("냄비");
             cardBuffer.Add("양파");
             cardBuffer.Add("우삼겹");
+        }
 
-            for (int i = 0; i < cardBuffer.Count; i++) {
-                int rand = Random.Range(i, cardBuffer.Count);
-                string tmp = cardBuffer[i];
-                cardBuffer[i] = cardBuffer[rand];
-                cardBuffer[rand] = tmp;
-            }
+        for (int i = 0; i < cardBuffer.Count; i++) {
+            int rand = Random.Range(i, cardBuffer.Count);
+            string tmp = cardBuffer[i];
+            cardBuffer[i] = cardBuffer[rand];
+            cardBuffer[rand] = tmp;
         }
     }
 
