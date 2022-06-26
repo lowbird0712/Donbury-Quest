@@ -13,7 +13,6 @@ public class CardGameMngScript : MonoBehaviour {
     [SerializeField] [Tooltip("패에 들고 있을 수 있는 최대 카드 개수를 정합니다")] int      maxCardCount;
     [SerializeField] [Tooltip("첫 턴에 놓을 수 있는 카드의 개수를 정합니다")] int           startPutCardCount;
     [SerializeField] [Tooltip("놓을 수 있는 카드의 최대 개수를 정합니다")] int              maxPutCardCount;
-    [SerializeField][Tooltip("시작할 스테이지의 번호를 정합니다")] int                      stageNum;
 
     [SerializeField] TurnStartPanelScript                                                   turnStartPanel;
     [SerializeField] TMP_Text                                                               turnNumText;
@@ -30,6 +29,7 @@ public class CardGameMngScript : MonoBehaviour {
     Dictionary<string, int>                                                                 stageInfo = new Dictionary<string, int>();
     Dictionary<string, int>                                                                 currentStageInfo = new Dictionary<string, int>();
     string                                                                                  recipeString;
+    int                                                                                     stageNum = -1;
     int                                                                                     maxTurnNum;
     int                                                                                     turnNum = 0;
 
@@ -40,11 +40,17 @@ public class CardGameMngScript : MonoBehaviour {
     static public Dictionary<string, int>                                                   StageInfo => Inst.stageInfo;
     static public Dictionary<string, int>                                                   CurrentStageInfo => Inst.currentStageInfo;
     static public PanelScript                                                               CardExplainPanel => Inst.cardExplainPanel;
-    static public int                                                                       StageNum => Inst.stageNum;
+    static public int StageNum {
+        get => Inst.stageNum;
+        set { Inst.stageNum = value; }
+    }
 
     public static List<bool> IsCoroutine => Inst.isCoroutine;
 
-    void Start() => StartGame();
+    void Start() {
+        MainGameMngScript.SendStageNum();
+        StartGame();
+    }
 
     void Update() {
 #if UNITY_EDITOR
@@ -179,6 +185,34 @@ public class CardGameMngScript : MonoBehaviour {
                 // 규동 기본 1개 만들기, 제한 50턴
                 menuInfo.Add("규동이 든 냄비(완료)", "규동 기본");
                 stageInfo.Add("규동이 든 냄비(완료)", 1);
+                currentStageInfo.Add("규동이 든 냄비(완료)", 0);
+                maxTurnNum = 50;
+                turnNumText.text = "남은 턴 : " + maxTurnNum.ToString();
+                recipeString = "규동 기본 레시피\n" +
+                    "1. 냄비에 아래의 재료를 넣고 끓인다.\n" +
+                    "주재료 : 양파\n" +
+                    "조미료 : 쇼유, 생강, 노랑도토리주, 해초도토리\n" +
+                    "2. 끓인 후의 냄비에 아래의 재료를 넣고 다시 끓인다.\n" +
+                    "주재료 : 우삼겹";
+                break;
+            case 7:
+                // 규동 기본 1개 만들기, 제한 30턴
+                menuInfo.Add("규동이 든 냄비(완료)", "규동 기본");
+                stageInfo.Add("규동이 든 냄비(완료)", 1);
+                currentStageInfo.Add("규동이 든 냄비(완료)", 0);
+                maxTurnNum = 30;
+                turnNumText.text = "남은 턴 : " + maxTurnNum.ToString();
+                recipeString = "규동 기본 레시피\n" +
+                    "1. 냄비에 아래의 재료를 넣고 끓인다.\n" +
+                    "주재료 : 양파\n" +
+                    "조미료 : 쇼유, 생강, 노랑도토리주, 해초도토리\n" +
+                    "2. 끓인 후의 냄비에 아래의 재료를 넣고 다시 끓인다.\n" +
+                    "주재료 : 우삼겹";
+                break;
+            case 8:
+                // 규동 기본 2개 만들기, 제한 50턴
+                menuInfo.Add("규동이 든 냄비(완료)", "규동 기본");
+                stageInfo.Add("규동이 든 냄비(완료)", 2);
                 currentStageInfo.Add("규동이 든 냄비(완료)", 0);
                 maxTurnNum = 50;
                 turnNumText.text = "남은 턴 : " + maxTurnNum.ToString();

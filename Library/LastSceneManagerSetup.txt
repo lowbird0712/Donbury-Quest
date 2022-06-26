@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/CardGame/CardGameScene.unity
+- path: Assets/Scenes/System/MainScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

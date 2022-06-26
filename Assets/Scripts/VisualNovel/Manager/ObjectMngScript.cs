@@ -19,24 +19,24 @@ public class ObjectMngScript : MonoBehaviour {
     static public void LoadObjects(string _mapName) {
         // 챕터 및 방문 횟수에 따라서 오브젝트들의 특성을 변경한다.
         if (_mapName == "Minimori1stRoad") {
-            if (MainGameMngScript.StorySelectingIndex == 1) {
-                switch (GameMngScript.VisitedMapName["Minimori1stRoad"]) {
-                    //case 2:
-                    //    // 린을 다른 곳으로 보낸다
-                    //    Inst.mObjects[1].SetActive(false);
-                    //    // 유리가 타유를 기다리게 한다
-                    //    Inst.mObjects[2].SetActive(true);
-                    //    // 도토리 센터의 문을 연다
-                    //    Inst.mObjects[3].GetComponent<ObjectScript>().InteractIndex = 1;
-                    //    break;
-                    //case 3:
-                    //    // 린을 다른 곳으로 보낸다
-                    //    Inst.mObjects[1].SetActive(false);
-                    //    // 코코로 식당의 문을 연다
-                    //    Inst.mObjects[0].GetComponent<SimplePortalScript>().InteractIndex = 1;
-                    //    break;
-                }
-            }
+            //if (MainGameMngScript.StorySelectingIndex == 1) {
+            //    switch (GameMngScript.VisitedMapName["Minimori1stRoad"]) {
+            //        //case 2:
+            //        //    // 린을 다른 곳으로 보낸다
+            //        //    Inst.mObjects[1].SetActive(false);
+            //        //    // 유리가 타유를 기다리게 한다
+            //        //    Inst.mObjects[2].SetActive(true);
+            //        //    // 도토리 센터의 문을 연다
+            //        //    Inst.mObjects[3].GetComponent<ObjectScript>().InteractIndex = 1;
+            //        //    break;
+            //        //case 3:
+            //        //    // 린을 다른 곳으로 보낸다
+            //        //    Inst.mObjects[1].SetActive(false);
+            //        //    // 코코로 식당의 문을 연다
+            //        //    Inst.mObjects[0].GetComponent<SimplePortalScript>().InteractIndex = 1;
+            //        //    break;
+            //    }
+            //}
         }
         //else if (_mapName == "KokoroRestaurant") {
         //    if (MainGameMngScript.StorySelectingIndex == 1) {

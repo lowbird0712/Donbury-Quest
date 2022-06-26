@@ -76,13 +76,13 @@ public class QuestMngScript : MonoBehaviour {
 
 	static public void LoadQuest(string _mapName) {
 		if (_mapName == "TayuLivingRoom") {
-			if (MainGameMngScript.StorySelectingIndex == 1) {
-				//Inst.mQuests = new Quest[1];
+			//if (MainGameMngScript.StorySelectingIndex == 1) {
+			//	//Inst.mQuests = new Quest[1];
 
-				//// 방문을 열어 바깥으로 나가기
-				//Inst.mQuests[0] = new Quest();
-				//Inst.mQuests[0].name = "방문을 열고 바깥으로 나가자!";
-			}
+			//	//// 방문을 열어 바깥으로 나가기
+			//	//Inst.mQuests[0] = new Quest();
+			//	//Inst.mQuests[0].name = "방문을 열고 바깥으로 나가자!";
+			//}
 		}
 		//else if (_mapName == "Minimori1stRoad") {
 		//    if (MainGameMngScript.StorySelectingIndex == 1) {

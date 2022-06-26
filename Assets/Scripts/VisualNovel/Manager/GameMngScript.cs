@@ -45,10 +45,8 @@ public class GameMngScript : MonoBehaviour {
 
         if (info.Using)
             Gold = info.givenGold;
-        else {
+        else
             Load();
-            Gold = MainGameMngScript.InitGold;
-        }
     }
 
     void Update() {

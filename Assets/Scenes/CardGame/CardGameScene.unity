@@ -4543,7 +4543,7 @@ MonoBehaviour:
   maxCardCount: 9
   startPutCardCount: 0
   maxPutCardCount: 5
-  stageNum: 2
+  stageNum: 8
   turnStartPanel: {fileID: 616752613}
   turnNumText: {fileID: 1979631240}
   currentStageInfoText: {fileID: 1189632023}

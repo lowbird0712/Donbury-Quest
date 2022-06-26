@@ -94,6 +94,12 @@ public class CardMngScript : MonoBehaviour {
             case 6:
                 Inst.deckName = "규동 기본";
                 break;
+            case 7:
+                Inst.deckName = "규동 기본";
+                break;
+            case 8:
+                Inst.deckName = "규동 기본";
+                break;
         }
         Inst.SetupCardItemSO();
         Inst.SetupCardBuffer();
