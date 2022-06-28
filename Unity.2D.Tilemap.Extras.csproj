@@ -53,18 +53,18 @@
     <UnityVersion>2020.3.27f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\RuleTile\RuleTile.cs" />
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\AnimatedTile\AnimatedTile.cs" />
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\WeightedRandomTile\WeightedRandomTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\RandomTile\RandomTile.cs" />
     <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\GridInformation\GridInformation.cs" />
     <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\TerrainTile\TerrainTile.cs" />
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Brushes\TintTextureGenerator.cs" />
     <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\PipelineTile\PipelineTile.cs" />
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\RuleOverrideTile\AdvancedRuleOverrideTile.cs" />
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\HexagonalRuleTile\HexagonalRuleTile.cs" />
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\IsometricRuleTile\IsometricRuleTile.cs" />
-    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\RandomTile\RandomTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Brushes\TintTextureGenerator.cs" />
     <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\RuleOverrideTile\RuleOverrideTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\IsometricRuleTile\IsometricRuleTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\HexagonalRuleTile\HexagonalRuleTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\RuleTile\RuleTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\RuleOverrideTile\AdvancedRuleOverrideTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\AnimatedTile\AnimatedTile.cs" />
+    <Compile Include="Assets\2d-extras-1.5.0-preview\Runtime\Tiles\WeightedRandomTile\WeightedRandomTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\2d-extras-1.5.0-preview\Runtime\Unity.2D.Tilemap.Extras.asmdef" />
@@ -314,17 +314,17 @@
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
-    <Reference Include="log4netPlastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
+    <Reference Include="log4netPlastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.27f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

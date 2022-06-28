@@ -2194,6 +2194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textTMP: {fileID: 0}
+  text: {fileID: 0}
 --- !u!224 &616752614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2517,6 +2518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textTMP: {fileID: 1413666480}
+  text: {fileID: 0}
 --- !u!114 &666314036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4543,7 +4545,6 @@ MonoBehaviour:
   maxCardCount: 9
   startPutCardCount: 0
   maxPutCardCount: 5
-  stageNum: 8
   turnStartPanel: {fileID: 616752613}
   turnNumText: {fileID: 1979631240}
   currentStageInfoText: {fileID: 1189632023}

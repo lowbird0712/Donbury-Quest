@@ -4,9 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 public class TurnStartPanelScript : PanelScript {
-    private void Start() {
-        Utils.turnStartPanelDotweenTime = Utils.turnStartPanelUpDownDotweenTime * 2 + Utils.turnStartPanelUpDownDotweenTime;
-    }
+    private void Start() => Utils.turnStartPanelDotweenTime = Utils.turnStartPanelUpDownDotweenTime * 2 + Utils.turnStartPanelUpDownDotweenTime;
 
     override public void Show() {
         Sequence sequence = DOTween.Sequence()
