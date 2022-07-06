@@ -27,8 +27,10 @@ public class StageMngScript : MonoBehaviour {
     static public void UnBlockNext() {
         if (Inst.nextUnblockIndex >= Inst.stageButtonList.Count)
             return;
-        if (Inst.maxUnlockIndex < Inst.nextUnblockIndex)
+        if (Inst.maxUnlockIndex < Inst.nextUnblockIndex) {
+            MainGameMngScript.MessagePanel.Show("이후의 스테이지를 해금하려면 유랑일지의 페이지를 먼저 해금하세요!");
             return;
+        }
         Inst.stageButtonList[Inst.nextUnblockIndex].UnBlock();
         Inst.nextUnblockIndex++;
     }

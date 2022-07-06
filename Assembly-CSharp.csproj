@@ -56,7 +56,7 @@
     <Compile Include="Assets\Scripts\VisualNovel\System\DontDestroyScript.cs" />
     <Compile Include="Assets\Scripts\VisualNovel\Player\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\VisualNovel\System\InitializerScript.cs" />
-    <Compile Include="Assets\Scripts\Main\StageButtonScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Buttons\StageButtonScript.cs" />
     <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\ShopObject\BuyButtonScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\UI\TurnStartPanelScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Managers\GridObjectMngScript.cs" />
@@ -88,6 +88,8 @@
     <Compile Include="Assets\Scripts\VisualNovel\Managers\GameMngScript.cs" />
     <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\StoryObject\GoldGivingScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\TravelNoteMngScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Managers\RecipeBookMngScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Buttons\PracticeButtonScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
