@@ -11,6 +11,7 @@ public class MainGameMngScript : MonoBehaviour {
     [SerializeField] GameObject     calander;
     [SerializeField] GameObject     travelNote;
     [SerializeField] GameObject     recipeBook;
+    [SerializeField] GameObject     box;
 
     bool                            isUIActive;
     [SerializeField] int            dotoriNum; // 테스트용 SerializeField
@@ -66,6 +67,17 @@ public class MainGameMngScript : MonoBehaviour {
         else if (recipeBook.activeSelf) {
             isUIActive = false;
             recipeBook.SetActive(false);
+        }
+    }
+
+    public void BoxButton() {
+        if (!isUIActive) {
+            isUIActive = true;
+            box.SetActive(true);
+        }
+        else if (box.activeSelf) {
+            isUIActive = false;
+            box.SetActive(false);
         }
     }
 }

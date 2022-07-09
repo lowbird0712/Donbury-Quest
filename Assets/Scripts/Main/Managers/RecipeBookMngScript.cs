@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum RecipeState {
+public enum RecipeState {
     RS_UNLOCKED,
     RS_LOCKED
 }
 
-class Recipe {
+public class Recipe {
     public Sprite       recipeSprite;
     public string       recipeName;
     public int          stageNum;
@@ -27,6 +27,8 @@ public class RecipeBookMngScript : MonoBehaviour {
 
     List<Recipe>                recipeList = new List<Recipe> ();
     int                         leftTopRecipeIndex;
+
+    static public List<Recipe>  RecipeList => Inst.recipeList;
 
     public int LeftTopRecipeIndex {
         get => leftTopRecipeIndex;
