@@ -5,6 +5,8 @@
 
 **丼ものクェストは”料理するカードゲーム”をテーマとしています. 既存の料理ゲームたちのシステムが実際の調理法との連関性が足りず、その結果料理のテーマが違うにもかかわらず似た方式のゲームプレイをすることになるところに焦点を合わせて考案いたしました.**
 
+**(現在、CoroutineロジックをUniRXに変える作業を行っています)**
+
 [**プロトタイプのプレイ動画**](https://github.com/lowbird0712/Projects-before-Donbury-Quest/tree/master/Prototype%20Videos)
 
 [**全体コード**](https://github.com/lowbird0712/Donbury-Quest/tree/master/Assets/Scripts)
