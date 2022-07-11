@@ -5,7 +5,7 @@
 
 **돈부리 퀘스트는 “요리하는 카드게임”를 테마로 하고 있습니다. 기존의 요리 게임들의 시스템이 실제 조리법과의 연관성이 부족하고 그 결과 요리의 테마가 다름에도 비슷한 방식의 게임 플레이를 하게 되는 부분에 초점을 맞춰 고안했습니다.**
 
-**(현재, Coroutine로직을 UniRX로 바꾸는 작업을 진행 중에 있습니다)**
+**(현재, 일부 로직의 UniRX/UniTask화를 진행 중입니다)**
 
 [**프로토타입 플레이 영상**](https://github.com/lowbird0712/Projects-before-Donbury-Quest/tree/master/Prototype%20Videos)
 
