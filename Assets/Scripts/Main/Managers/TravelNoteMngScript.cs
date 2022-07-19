@@ -112,11 +112,11 @@ public class TravelNoteMngScript : MonoBehaviour {
     public void LeftUnlock() {
         if (pageList[leftPageIndex].state != PageState.PS_LOCKED)
             return;
-        if (MainGameMngScript.DotoriNum < 3) {
+        if (MainGameMngScript.DotoriNum.Value < 3) {
             MainGameMngScript.MessagePanel.Show("도토리 개수가 부족합니다!");
             return;
         }
-        MainGameMngScript.DotoriNum -= 3;
+        MainGameMngScript.DotoriNum.Value -= 3;
         if (StageMngScript.MaxUnlockIndex < StageMngScript.NextUnblockIndex) {
             StageMngScript.MaxUnlockIndex += 5;
             StageMngScript.UnBlockNext();
@@ -129,13 +129,13 @@ public class TravelNoteMngScript : MonoBehaviour {
     }
 
     public void RightUnlock() {
-        if (pageList[leftPageIndex + 1].state != PageState.PS_LOCKED)
+        if (leftPageIndex + 1 == pageList.Count || pageList[leftPageIndex + 1].state != PageState.PS_LOCKED)
             return;
-        if (MainGameMngScript.DotoriNum < 3) {
+        if (MainGameMngScript.DotoriNum.Value < 3) {
             MainGameMngScript.MessagePanel.Show("도토리 개수가 부족합니다!");
             return;
         }
-        MainGameMngScript.DotoriNum -= 3;
+        MainGameMngScript.DotoriNum.Value -= 3;
         if (StageMngScript.MaxUnlockIndex < StageMngScript.NextUnblockIndex) {
             StageMngScript.MaxUnlockIndex += 5;
             StageMngScript.UnBlockNext();

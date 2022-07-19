@@ -2,34 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class MainGameMngScript : MonoBehaviour {
     static public MainGameMngScript Inst { get; set; } = null;
 
-    [SerializeField] PanelScript    messagePanel;
-    [SerializeField] Text           dotoriNumText; 
-    [SerializeField] GameObject     calander;
-    [SerializeField] GameObject     travelNote;
-    [SerializeField] GameObject     recipeBook;
-    [SerializeField] GameObject     box;
+    [SerializeField] PanelScript            messagePanel;
+    [SerializeField] Text                   dotoriNumText; 
+    [SerializeField] GameObject             calander;
+    [SerializeField] GameObject             travelNote;
+    [SerializeField] GameObject             recipeBook;
+    [SerializeField] GameObject             box;
 
-    bool                            isUIActive;
-    [SerializeField] int            dotoriNum; // 테스트용 SerializeField
-    int                             stageNum = -1;
+    bool                                    isUIActive;
+    ReactiveProperty<int>                   dotoriNum = new ReactiveProperty<int>();
+    int                                     stageNum = -1;
 
-    static public PanelScript       MessagePanel => Inst.messagePanel;
-    static public int               StageNum { set { Inst.stageNum = value; } }
-
-    static public int DotoriNum {
-        get => Inst.dotoriNum;
-        set {
-            Inst.dotoriNum = value;
-            Inst.dotoriNumText.text = value.ToString();
-        }
-    }
+    static public PanelScript               MessagePanel => Inst.messagePanel;
+    static public ReactiveProperty<int>     DotoriNum => Inst.dotoriNum;
+    static public int                       StageNum { set { Inst.stageNum = value; } }
 
     private void Awake() => Inst = this;
-    private void Start() => DotoriNum = dotoriNum;
+    private void Start() {
+        dotoriNum.Subscribe(_dotoriNum => dotoriNumText.text = _dotoriNum.ToString());
+        dotoriNum.Value = 50; //// 테스트
+    }
 
     static public void SendStageNum() {
         CardGameMngScript.StageNum = Inst.stageNum;

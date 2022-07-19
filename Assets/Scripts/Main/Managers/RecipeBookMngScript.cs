@@ -30,28 +30,28 @@ public class RecipeBookMngScript : MonoBehaviour {
 
     static public List<Recipe>  RecipeList => Inst.recipeList;
 
-    public int LeftTopRecipeIndex {
-        get => leftTopRecipeIndex;
+    static public int LeftTopRecipeIndex {
+        get => Inst.leftTopRecipeIndex;
         set {
-            leftTopRecipeIndex = value;
-            for (int i = leftTopRecipeIndex; i < leftTopRecipeIndex + recipeImages.Length; i++) {
-                if (i >= recipeList.Count) {
-                    recipeButtons[i - leftTopRecipeIndex].interactable = false;
-                    recipeImages[i - leftTopRecipeIndex].sprite = recipeEmptySprite;
-                    recipeNameTexts[i - leftTopRecipeIndex].text = "";
+            Inst.leftTopRecipeIndex = value;
+            for (int i = LeftTopRecipeIndex; i < LeftTopRecipeIndex + Inst.recipeImages.Length; i++) {
+                if (i >= RecipeList.Count) {
+                    Inst.recipeButtons[i - LeftTopRecipeIndex].interactable = false;
+                    Inst.recipeImages[i - LeftTopRecipeIndex].sprite = Inst.recipeEmptySprite;
+                    Inst.recipeNameTexts[i - LeftTopRecipeIndex].text = "";
                     continue;
                 }
-                switch (recipeList[i].state) {
+                switch (RecipeList[i].state) {
                     case RecipeState.RS_UNLOCKED:
-                        recipeButtons[i - leftTopRecipeIndex].interactable = true;
-                        recipeButtons[i - leftTopRecipeIndex].GetComponent<PracticeButtonScript>().StageNum = recipeList[i].stageNum;
-                        recipeImages[i - leftTopRecipeIndex].sprite = recipeList[i].recipeSprite;
-                        recipeNameTexts[i - leftTopRecipeIndex].text = recipeList[i].recipeName;
+                        Inst.recipeButtons[i - LeftTopRecipeIndex].interactable = true;
+                        Inst.recipeButtons[i - LeftTopRecipeIndex].GetComponent<PracticeButtonScript>().StageNum = RecipeList[i].stageNum;
+                        Inst.recipeImages[i - LeftTopRecipeIndex].sprite = RecipeList[i].recipeSprite;
+                        Inst.recipeNameTexts[i - LeftTopRecipeIndex].text = RecipeList[i].recipeName;
                         break;
                     case RecipeState.RS_LOCKED:
-                        recipeButtons[i - leftTopRecipeIndex].interactable = false;
-                        recipeImages[i - leftTopRecipeIndex].sprite = recipeLockedSprite;
-                        recipeNameTexts[i - leftTopRecipeIndex].text = "잠긴 레시피입니다.";
+                        Inst.recipeButtons[i - LeftTopRecipeIndex].interactable = false;
+                        Inst.recipeImages[i - LeftTopRecipeIndex].sprite = Inst.recipeLockedSprite;
+                        Inst.recipeNameTexts[i - LeftTopRecipeIndex].text = "잠긴 레시피입니다.";
                         break;
                 }
             }
@@ -66,14 +66,14 @@ public class RecipeBookMngScript : MonoBehaviour {
 
     static public void UnLockRecipe(int _index) {
         Inst.recipeList[_index].state = RecipeState.RS_UNLOCKED;
-        Inst.LeftTopRecipeIndex = 0;
+        LeftTopRecipeIndex = 0;
     }
 
     void Init() {
         Recipe recipe = new Recipe();
         recipe.recipeSprite = recipeSprites[0];
         recipe.recipeName = "규동 기본";
-        recipe.stageNum = 6; ////
+        recipe.stageNum = 6; //// 스테이지 구성 완료 후 7로 바꿀 것
         recipe.state = RecipeState.RS_LOCKED;
         recipeList.Add(recipe);
         LeftTopRecipeIndex = 0;

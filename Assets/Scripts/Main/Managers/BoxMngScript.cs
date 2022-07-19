@@ -27,10 +27,12 @@ public class BoxMngScript : MonoBehaviour {
                 unLockRecipeList.Add(iter);
         }
         for (int i = 0; i < questTexts.Length; i++) {
+            questButtons[i].GetComponent<Button>().interactable = false;
             while (unLockRecipeList.Count > 0 && filledQuestNum < questTexts.Length) {
                 do
                     recipe = unLockRecipeList[Random.Range(0, unLockRecipeList.Count)];
                 while (questNameList.Contains(recipe.recipeName));
+                questButtons[i].GetComponent<Button>().interactable = true;
                 questButtons[i].StageNum = recipe.stageNum;
                 questImages[i].sprite = recipe.recipeSprite;
                 questTexts[i].text = recipe.recipeName;

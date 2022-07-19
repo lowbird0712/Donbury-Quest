@@ -21,12 +21,12 @@ public class StageButtonScript : MonoBehaviour {
     public void UnBlock() => unBlockImage.enabled = false;
 
     public void StageButton() {
-        if (MainGameMngScript.DotoriNum < neededDotoriNum) {
+        if (MainGameMngScript.DotoriNum.Value < neededDotoriNum) {
             MainGameMngScript.MessagePanel.Show("도토리 개수가 부족합니다!");
             return;
         }
         else if (unLockImage.IsActive()) {
-            MainGameMngScript.DotoriNum -= neededDotoriNum;
+            MainGameMngScript.DotoriNum.Value -= neededDotoriNum;
             neededDotoriNumText.enabled = false;
             unLockImage.enabled = false;
             StageMngScript.UnBlockNext();

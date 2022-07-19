@@ -21,11 +21,11 @@ public class GridObjectMngScript : MonoBehaviour {
 
     void Start() => nextGridObject = gridObjects[nextGridObjectIndex];
 
-    public static void                      StartCooking(int _x, int _y) => Inst.gridObjects[4 * _x + _y].StartCooking();
-    public static void                      Spell(string _spellName, int _x, int _y) => Inst.gridObjects[4 * _x + _y].UseSpell(_spellName);
-    public static void                      PlaceObject(string _objectName, int _x, int _y) => Inst.StartCoroutine(Inst.gridObjects[4 * _x + _y].SetObject(_objectName));
-    public static List<GridObjectScript>    GetAdjacentGridObjects() => GetAdjacentGridObjects(NextGridObject.Position[0], NextGridObject.Position[1]);
-    public static List<GridObjectScript>    GetAdjacentGridObjects(int[] _position) => GetAdjacentGridObjects(_position[0], _position[1]);
+    public static void                                  StartCooking(int _x, int _y) => Inst.gridObjects[4 * _x + _y].StartCooking();
+    public static void                                  Spell(string _spellName, int _x, int _y) => Inst.gridObjects[4 * _x + _y].UseSpell(_spellName);
+    public static void                                  PlaceObject(string _objectName, int _x, int _y) => Inst.StartCoroutine(Inst.gridObjects[4 * _x + _y].SetObject(_objectName));
+    public static List<GridObjectScript>                GetAdjacentGridObjects() => GetAdjacentGridObjects(NextGridObject.Position[0], NextGridObject.Position[1]);
+    public static List<GridObjectScript>                GetAdjacentGridObjects(int[] _position) => GetAdjacentGridObjects(_position[0], _position[1]);
 
     void InputObject(int[] _objPosition, int[] _toolPosition) {
         GridObjectScript obj = gridObjects[4 * _objPosition[0] + _objPosition[1]];
@@ -41,7 +41,6 @@ public class GridObjectMngScript : MonoBehaviour {
         if (_donburyGrid != null)
             StartCoroutine(_donburyGrid.RemoveObject());
         CardGameMngScript.CurrentStageInfo[_menu]++;
-        CardGameMngScript.CurrentStageInfoTextSet();
     }
 
     string DonburyCheck(ref GridObjectScript _donburyGrid) {

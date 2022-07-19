@@ -4,6 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 using Random = UnityEngine.Random;
 using IEnumerator = System.Collections.IEnumerator;
+using UniRx;
+using UniRx.Triggers;
 
 public class CardMngScript : MonoBehaviour {
     public static CardMngScript         Inst { get; private set; }
@@ -50,25 +52,28 @@ public class CardMngScript : MonoBehaviour {
     public static float                 OneCardPutWidth => Inst.oneCardPutWidth;
     public static float                 OneCardPutX => Inst.oneCardPutX;
 
-    private void Start() => cardPutCount = CardGameMngScript.StartPutCardCount;
-
-    private void Update() {
-        DetectCardArea();
-        SetCardState();
-
-        if (Input.GetMouseButtonDown(0)) {
-            if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea && !onGridObjectArea)
-                CardGameMngScript.CardExplainPanel.ScaleZero();
-            else if (cardState == ECardState.CardPutUp && !onUIArea) {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
-                int layer = LayerMask.NameToLayer("Card");
-                if (!Array.Exists(hits, x => x.collider.gameObject.layer == layer))
-                    StartCoroutine(PutDownCard());
-            }
-        }
-
-        if (cardDragging)
-            DragCard();
+    private void Start() {
+        cardPutCount = CardGameMngScript.StartPutCardCount;
+        this.UpdateAsObservable()
+            .Subscribe(_ => {
+            DetectCardArea();
+            SetCardState();
+        });
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetMouseButtonDown(0))
+            .Subscribe(_ => {
+                if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea && !onGridObjectArea)
+                    CardGameMngScript.CardExplainPanel.ScaleZero();
+                else if (cardState == ECardState.CardPutUp && !onUIArea) {
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
+                    int layer = LayerMask.NameToLayer("Card");
+                    if (!Array.Exists(hits, x => x.collider.gameObject.layer == layer))
+                        StartCoroutine(PutDownCard());
+                }
+            });
+        this.UpdateAsObservable()
+            .Where(_ => cardDragging)
+            .Subscribe(_ => DragCard());
     }
 
     public static void Init(int _stageNum) {

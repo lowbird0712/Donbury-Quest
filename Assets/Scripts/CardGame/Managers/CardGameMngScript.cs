@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TMPro;
+using UniRx;
+using UniRx.Triggers;
 
 public class CardGameMngScript : MonoBehaviour {
     public static CardGameMngScript                                                         Inst { get; private set; }
@@ -27,18 +29,19 @@ public class CardGameMngScript : MonoBehaviour {
     bool                                                                                    myTurn;
     Dictionary<string, string>                                                              menuInfo = new Dictionary<string, string>();
     Dictionary<string, int>                                                                 stageInfo = new Dictionary<string, int>();
-    Dictionary<string, int>                                                                 currentStageInfo = new Dictionary<string, int>();
+    ReactiveDictionary<string, int>                                                         currentStageInfo = new ReactiveDictionary<string, int>();
+    //Dictionary<string, int>                                                                 currentStageInfo = new Dictionary<string, int>();
     string                                                                                  recipeString;
     int                                                                                     stageNum = -1;
     int                                                                                     maxTurnNum;
-    int                                                                                     turnNum = 0;
+    ReactiveProperty<int>                                                                   turnNum = new ReactiveProperty<int>();
 
     static public int                                                                       MaxCardCount => Inst.maxCardCount;
     static public int                                                                       StartPutCardCount => Inst.startPutCardCount;
     static public int                                                                       MaxPutCardCount => Inst.maxPutCardCount;
     static public bool                                                                      MyTurn => Inst.myTurn;
     static public Dictionary<string, int>                                                   StageInfo => Inst.stageInfo;
-    static public Dictionary<string, int>                                                   CurrentStageInfo => Inst.currentStageInfo;
+    static public ReactiveDictionary<string, int>                                           CurrentStageInfo => Inst.currentStageInfo;
     static public PanelScript                                                               CardExplainPanel => Inst.cardExplainPanel;
     static public int StageNum {
         get => Inst.stageNum;
@@ -50,11 +53,18 @@ public class CardGameMngScript : MonoBehaviour {
     void Start() {
         MainGameMngScript.SendStageNum();
         StartGame();
-    }
-
-    void Update() {
+        turnNum
+            .Subscribe(x => { turnNumText.text = "남은 턴 : " + (maxTurnNum - x + 1).ToString(); });
+        currentStageInfo
+            .ObserveReplace()
+            .Subscribe(_ => CurrentStageInfoTextSet());
 #if UNITY_EDITOR
-        CheatKey();
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetKeyDown(KeyCode.O))
+            .Subscribe(_ => CardMngScript.AddCardItem());
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetKeyDown(KeyCode.E))
+            .Subscribe(_ => StartCoroutine(EndTurnCo()));
 #endif
     }
 
@@ -75,13 +85,6 @@ public class CardGameMngScript : MonoBehaviour {
     void                StartGame() => StartCoroutine(StartGameCo());
     void                StageClear() => turnStartPanel.Show();
     public void         ShowRecipeString() => CardExplainPanel.Show(recipeString);
-
-    void CheatKey() {
-        if (Input.GetKeyDown(KeyCode.O))
-            CardMngScript.AddCardItem();
-        if (Input.GetKeyDown(KeyCode.E))
-            StartCoroutine(EndTurnCo());
-    }
 
     void GameSetup(int _stageNum) {
         if (fastMode) {
@@ -229,9 +232,8 @@ public class CardGameMngScript : MonoBehaviour {
 
     bool TurnStart() {
         CardMngScript.IncreaseCardPutCount();
-        turnNum++;
-        turnNumText.text = "남은 턴 : " + (maxTurnNum - turnNum + 1).ToString();
-        if (turnNum > maxTurnNum)
+        turnNum.Value++;
+        if (turnNum.Value > maxTurnNum)
             return false;
         else
             return true;
