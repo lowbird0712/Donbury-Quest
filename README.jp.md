@@ -92,23 +92,28 @@ IEnumerator EndTurnCo() {
 ` `**プレイヤーはマウスで使うカードをひっくり返したりカードボードに配置することができます. プレイヤーのマウス操作は大きく“画面クリック”と“カードクリック”に分けることができます.**
 
 ```cs
-private void Update() {
-        DetectCardArea();
-        SetCardState();
-
-        if (Input.GetMouseButtonDown(0)) {
-            if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea)
-                cardExplainPanel.ScaleZero();
-            else if (cardState == ECardState.CardPutUp) {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
-                int layer = LayerMask.NameToLayer("Card");
-                if (!Array.Exists(hits, x => x.collider.gameObject.layer == layer))
-                    StartCoroutine(PutDownCard());
-            }
-        }
-
-        if (cardDragging)
-            DragCard();
+private void Start() {
+        cardPutCount = CardGameMngScript.StartPutCardCount;
+        this.UpdateAsObservable()
+            .Subscribe(_ => {
+            DetectCardArea();
+            SetCardState();
+        });
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetMouseButtonDown(0))
+            .Subscribe(_ => {
+                if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea && !onGridObjectArea)
+                    CardGameMngScript.CardExplainPanel.ScaleZero();
+                else if (cardState == ECardState.CardPutUp && !onUIArea) {
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
+                    int layer = LayerMask.NameToLayer("Card");
+                    if (!Array.Exists(hits, x => x.collider.gameObject.layer == layer))
+                        StartCoroutine(PutDownCard());
+                }
+            });
+        this.UpdateAsObservable()
+            .Where(_ => cardDragging)
+            .Subscribe(_ => DragCard());
     }
 ```
 
@@ -232,7 +237,7 @@ public void ExecuteCardFunc(string _cardName, SO_Dotori _dotoriFlag) {
     }
 ```
 
-**基本的に各自のカード効果に関する明示はカードコーディングにしています. エクセルなどの外部文章プログラムを連動してやる方法も考慮したが、ガードとカード効果の特性が各自横縦一本づつ占めることになるエクセルの特性上、後で種類が多くなれば空白が占める部分が多くなり(全てのカードがほとんどの特性を持っているわけではない)、管理が難しくなると思いました. また、条件文活用やコード内関数呼びたしだどの柔軟な活用が外部プログラムでは難しいと思いました. 小さい関数を多く作ってプログリミングを知らないゲームデザイナーが作業する時に難しくないことに重点を当てました. 現在はもっといい方法を見つけたので外部からデータを読み込む方式に変更予定です.**
+**カードの効果を定義する関数です. カード効果単位の小さい関数を多く作ってプログリミングを知らないゲームプラナーが作業する時に難しくなくすることに重点を当てました.**
 
 ```cs
 public static void NextGridObjectUpdate() {
@@ -266,11 +271,11 @@ public static IEnumerator ExecuteGridObjectCo() {
                     grid.IsNewCooking = false;
                 else {
                     grid.CountDown -= 1;
-                    if (grid.CountDown == 0) {
+                    if (grid.CountDown == 0) {  // 130番ライン
                         GridObjectSO.ExecuteObjectFunc(grid.ObjectName, SO_Timing.End, grid.Position[0], grid.Position[1]);
                         grid.EndCooking();
                     }
-                    else
+                    else                        // 134番ライン
                         GridObjectSO.ExecuteObjectFunc(grid.ObjectName, SO_Timing.Effect, grid.Position[0], grid.Position[1]);
                     yield return new WaitForSeconds(Utils.cardExecDotweenTime * 2);
                 }
@@ -309,7 +314,7 @@ public static IEnumerator ExecuteGridObjectCo() {
 
 **調理道具じゃないオブジェクト(おとんど食材) : 周りに該当のオブジェクトを必要とする調理道具があればオブジェクトを入れます.**
 
-` `**調理が完了する時に125番ラインが実行されます. オブジェクトが調理後オブジェクトに渡る部分は全て個のラインを通して具現されます. 現在のプロトタイプでは129番ラインが実行されません. しかし、今後の拡張で毎ターンゲームに影響を与えるオブジェクトの登場可能性を開けておくために、そして該当の機能を追加する時間があまりかからなさそうに見えたので追加することになりました.**
+` `**調理が完了する時に130番ラインが実行されます. オブジェクトが調理後オブジェクトに渡る部分は全て個のラインを通して具現されます. 現在のプロトタイプでは134番ラインが実行されません. しかし、今後の拡張で毎ターンゲームに影響を与えるオブジェクトの登場可能性を開けておくために、そして該当の機能を追加する時間があまりかからなさそうに見えたので追加することになりました.**
 
 ## **D. スパイスシステム**
 
@@ -343,9 +348,3 @@ public static string GetRandomNeededSpice() {
 ```
 
 **スパイスカードが使われた時に実行される関数です. 関数は結果的に配置されるオブジェクトの名前をリターンします. 一ターンに複数枚のスパイスカードが使われ、一つの調理度具の隣接したグリッドたちに複数個以上のスパイスカードから出たオブジェクトが配置される予定の場合、同名のスパイスオブジェクトが生成されないようにしています.**
-
-## **作業予定**
-
-**1. 一部ロジックをUniRX/UniTaskに変更**
-
-**2. データの入り方を外部から行う方式に変更**
