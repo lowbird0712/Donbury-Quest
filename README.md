@@ -94,23 +94,28 @@ IEnumerator EndTurnCo() {
 ` `**플레이어는 마우스를 통해 사용할 카드를 뒤집거나 카드보드에 배치할 수 있습니다. 플레이어의 마우스 조작은 크게 “화면 클릭”과 “카드 클릭”으로 나눌 수 있습니다.**
 
 ```cs
-private void Update() {
-        DetectCardArea();
-        SetCardState();
-
-        if (Input.GetMouseButtonDown(0)) {
-            if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea)
-                cardExplainPanel.ScaleZero();
-            else if (cardState == ECardState.CardPutUp) {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
-                int layer = LayerMask.NameToLayer("Card");
-                if (!Array.Exists(hits, x => x.collider.gameObject.layer == layer))
-                    StartCoroutine(PutDownCard());
-            }
-        }
-
-        if (cardDragging)
-            DragCard();
+ private void Start() {
+        cardPutCount = CardGameMngScript.StartPutCardCount;
+        this.UpdateAsObservable()
+            .Subscribe(_ => {
+            DetectCardArea();
+            SetCardState();
+        });
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetMouseButtonDown(0))
+            .Subscribe(_ => {
+                if (cardState == ECardState.CanMouseDrag && !onCardArea && !onCardPutArea && !onGridObjectArea)
+                    CardGameMngScript.CardExplainPanel.ScaleZero();
+                else if (cardState == ECardState.CardPutUp && !onUIArea) {
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
+                    int layer = LayerMask.NameToLayer("Card");
+                    if (!Array.Exists(hits, x => x.collider.gameObject.layer == layer))
+                        StartCoroutine(PutDownCard());
+                }
+            });
+        this.UpdateAsObservable()
+            .Where(_ => cardDragging)
+            .Subscribe(_ => DragCard());
     }
 ```
 
@@ -234,7 +239,7 @@ public void ExecuteCardFunc(string _cardName, SO_Dotori _dotoriFlag) {
     }
 ```
 
-**기본적으로 각각의 카드 효과에 대한 명시는 하드코딩으로 하고 있습니다. 엑셀 등의 외부 문서 프로그램을 연결해서 하는 방법도 고려하였으나 카드와 특성이 각각 가로, 세로 한 줄씩을 차지하게 되는 엑셀의 특성 상 나중에 종류가 많아지면 공백이 차지하는 부분이 많아져(모든 카드가 대부분의 특성을 가지고 있는 것이 아님) 관리가 어려울 것이라 판단하였습니다. 또한, 조건문 활용이나 코드 내 함수 호출 등의 유연한 활용이 외부 프로그램으로는 어려울 것이라 생각했습니다. 작은 함수를 많이 만들어 프로그래밍을 모르는 기획자가 작업할 때 어렵지 않도록 하는 것에 초점을 맞추었습니다. 현재는 더 좋은 방식을 발견해 추후 외부로부터 데이터를 읽어오는 방식으로 변경할 예정입니다.**
+**카드의 효과를 정의하고 있는 함수입니다. 효과 단위에 해당하는 작은 함수를 많이 만들어 프로그래밍을 모르는 기획자가 작업할 때 어렵지 않도록 하는 것에 초점을 맞추었습니다.**
 
 ```cs
 public static void NextGridObjectUpdate() {
@@ -268,11 +273,11 @@ public static IEnumerator ExecuteGridObjectCo() {
                     grid.IsNewCooking = false;
                 else {
                     grid.CountDown -= 1;
-                    if (grid.CountDown == 0) {
+                    if (grid.CountDown == 0) {  // 130번 라인
                         GridObjectSO.ExecuteObjectFunc(grid.ObjectName, SO_Timing.End, grid.Position[0], grid.Position[1]);
                         grid.EndCooking();
                     }
-                    else
+                    else                        // 134번 라인
                         GridObjectSO.ExecuteObjectFunc(grid.ObjectName, SO_Timing.Effect, grid.Position[0], grid.Position[1]);
                     yield return new WaitForSeconds(Utils.cardExecDotweenTime * 2);
                 }
@@ -311,7 +316,7 @@ public static IEnumerator ExecuteGridObjectCo() {
 
 **조리 도구가 아닌 오브젝트(대부분 재료) : 주변에 오브젝트를 필요로 하는 조리 기구가 있으면 재료를 집어 넣습니다.**
 
-` `**조리가 완료되는 경우에 125번 라인이 실행되는데 오브젝트가 조리 후 오브젝트로 넘어가는 부분은 모두 이 라인을 통해 구현됩니다. 현재 프로토타입에서는 129번 라인이 실행되지 않습니다. 그러나 추후 확장을 통해 매 턴 게임에 영향을 끼치는 오브젝트의 등장 가능성을 열어놓기 위해, 그리고 해당 기능을 추가하는 시간이 얼마 걸리지 않아 보였기 때문에 추가하게 되었습니다.**
+` `**조리가 완료되는 경우에 130번 라인이 실행되는데 오브젝트가 조리 후 오브젝트로 넘어가는 부분은 모두 이 라인을 통해 구현됩니다. 현재 프로토타입에서는 134번 라인이 실행되지 않습니다. 그러나 추후 확장을 통해 매 턴 게임에 영향을 끼치는 오브젝트의 등장 가능성을 열어놓기 위해, 그리고 해당 기능을 추가하는 시간이 얼마 걸리지 않아 보였기 때문에 추가하게 되었습니다.**
 
 ## **D. 조미료 시스템**
 
@@ -345,9 +350,3 @@ public static string GetRandomNeededSpice() {
 ```
 
 **조미료 카드가 사용될 때 실행되는 함수입니다. 함수는 결과적으로 배치될 오브젝트의 이름을 리턴합니다. 한 턴에 여러 장의 조미료 카드가 사용되고 한 개의 조리 도구의 인접한 그리드들에 두 개 이상의 조미료 카드로부터 나온 오브젝트가 배치될 예정인 경우 같은 이름의 조미료 오브젝트가 생성되지 않도록 해 주고 있습니다.**
-
-## **작업예정**
-
-**1. 일부 로직을 UniRX/UniTask로 변경**
-
-**2. 데이터를 넣는 방법을 외부로부터 하는 방식으로 **
