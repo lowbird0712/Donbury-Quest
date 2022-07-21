@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UniRx;
 using UniRx.Triggers;
@@ -30,7 +31,6 @@ public class CardGameMngScript : MonoBehaviour {
     Dictionary<string, string>                                                              menuInfo = new Dictionary<string, string>();
     Dictionary<string, int>                                                                 stageInfo = new Dictionary<string, int>();
     ReactiveDictionary<string, int>                                                         currentStageInfo = new ReactiveDictionary<string, int>();
-    //Dictionary<string, int>                                                                 currentStageInfo = new Dictionary<string, int>();
     string                                                                                  recipeString;
     int                                                                                     stageNum = -1;
     int                                                                                     maxTurnNum;
@@ -52,7 +52,6 @@ public class CardGameMngScript : MonoBehaviour {
 
     void Start() {
         MainGameMngScript.SendStageNum();
-        StartGame();
         turnNum
             .Subscribe(x => { turnNumText.text = "남은 턴 : " + (maxTurnNum - x + 1).ToString(); });
         currentStageInfo
@@ -66,12 +65,16 @@ public class CardGameMngScript : MonoBehaviour {
             .Where(_ => Input.GetKeyDown(KeyCode.E))
             .Subscribe(_ => StartCoroutine(EndTurnCo()));
 #endif
+        StartCoroutine(StartGameCo());
     }
 
     private void OnDestroy() {
         if (fastMode) {
             Utils.cardDrawDotweenTime /= Utils.fastModeFloat;
             Utils.cardDrawExtraTime /= Utils.fastModeFloat;
+            Utils.turnStartPanelAppendDotweenTIme /= Utils.fastModeFloat;
+            Utils.turnStartPanelUpDownDotweenTime /= Utils.fastModeFloat;
+            Utils.cardExecDotweenTime /= Utils.fastModeFloat;
         }
     }
 
@@ -81,15 +84,15 @@ public class CardGameMngScript : MonoBehaviour {
             text += Inst.menuInfo[keyValue.Key] + " : " + Inst.currentStageInfo[keyValue.Key] + "/" + Inst.stageInfo[keyValue.Key] + "\n";
         Inst.currentStageInfoText.text = text;
     }
-
-    void                StartGame() => StartCoroutine(StartGameCo());
-    void                StageClear() => turnStartPanel.Show();
     public void         ShowRecipeString() => CardExplainPanel.Show(recipeString);
 
     void GameSetup(int _stageNum) {
         if (fastMode) {
             Utils.cardDrawDotweenTime *= Utils.fastModeFloat;
             Utils.cardDrawExtraTime *= Utils.fastModeFloat;
+            Utils.turnStartPanelAppendDotweenTIme *= Utils.fastModeFloat;
+            Utils.turnStartPanelUpDownDotweenTime *= Utils.fastModeFloat;
+            Utils.cardExecDotweenTime *= Utils.fastModeFloat;
         }
         Init(_stageNum);
         CardMngScript.Init(_stageNum);
@@ -266,7 +269,7 @@ public class CardGameMngScript : MonoBehaviour {
         myTurn = true;
         if (TurnStart()) {
             turnStartPanel.Show();
-            yield return new WaitForSeconds(Utils.turnStartPanelDotweenTime);
+            yield return new WaitForSeconds(Utils.turnStartPanelUpDownDotweenTime * 2 + Utils.turnStartPanelAppendDotweenTIme);
             CardMngScript.AddCardItem();
             yield return new WaitForSeconds(Utils.cardDrawDotweenTime);
         }
@@ -287,14 +290,27 @@ public class CardGameMngScript : MonoBehaviour {
         StartCoroutine(GridObjectMngScript.ExecuteGridObjectCo());
         while (isCoroutine[1]) yield return null;
         if (IsStageClear())
-            StageClear();
+            StartCoroutine(StageClearCo());
         else
             StartCoroutine(StartTurnCo());
         isCoroutine.Clear();
     }
 
     IEnumerator GameOverCo() {
-        ////
-        yield break;
+        turnStartPanel.Show("게임 오버!");
+        yield return new WaitForSeconds(Utils.turnStartPanelUpDownDotweenTime * 2 + Utils.turnStartPanelAppendDotweenTIme);
+        MainGameMngScript.MainSceneCanvas.SetActive(true);
+        SceneManager.LoadScene("MainScene");
+    }
+
+    IEnumerator StageClearCo() {
+        turnStartPanel.Show("스테이지 클리어!");
+        yield return new WaitForSeconds(Utils.turnStartPanelUpDownDotweenTime * 2 + Utils.turnStartPanelAppendDotweenTIme);
+        if (BoxMngScript.QuestStageIndex != -1)
+            BoxMngScript.QuestClear();
+        else if (!StageMngScript.StageButtonList[stageNum].IsCleared)
+            StageMngScript.StageClear(stageNum);
+        MainGameMngScript.MainSceneCanvas.SetActive(true);
+        SceneManager.LoadScene("MainScene");
     }
 }

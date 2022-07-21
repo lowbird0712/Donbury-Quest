@@ -53,44 +53,46 @@
     <UnityVersion>2020.3.27f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\VisualNovel\System\DontDestroyScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\Player\PlayerScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\System\InitializerScript.cs" />
+    <Compile Include="Assets\Scripts\0CommonSystem\DontDestroyScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\Player\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\0CommonSystem\InitializerScript.cs" />
     <Compile Include="Assets\Scripts\Main\Buttons\StageButtonScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\ShopObject\BuyButtonScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\ShopObject\BuyButtonScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\UI\TurnStartPanelScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Managers\GridObjectMngScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Board\GridObjectScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\System\TesterScript.cs" />
+    <Compile Include="Assets\Scripts\0CommonSystem\TesterScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\ScriptableObjects\SO_GridObjectScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\Managers\SoundMngScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\PortalObject\QuestPortalScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\Managers\SoundMngScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\PortalObject\QuestPortalScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Card\CardScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\StoryObject\QuestObjectScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\StoryObject\QuestObjectScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\BoxMngScript.cs" />
     <Compile Include="Assets\Scripts\0CommonSystem\DotweenMovingScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\Managers\ObjectMngScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\ShopObject\ShopScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\Managers\StoryBlockMngScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\PortalObject\SimplePortalScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\Managers\ObjectMngScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\ShopObject\ShopScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\Managers\StoryBlockMngScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\PortalObject\SimplePortalScript.cs" />
     <Compile Include="Assets\Scripts\0CommonSystem\Utils.cs" />
     <Compile Include="Assets\Scripts\CardGame\Board\CardPutCoverScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Managers\CardGameMngScript.cs" />
     <Compile Include="Assets\Scripts\Main\Buttons\PracticeButtonScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\StageMngScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\ObjectScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\Managers\ShopMngScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\StoryObject\StoryObjectScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\ObjectScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\Managers\ShopMngScript.cs" />
+    <Compile Include="Assets\Scripts\0CommonSystem\ManagerSceneScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\StoryObject\StoryObjectScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Card\CardOrderScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\Managers\QuestMngScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\Managers\QuestMngScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\MainGameMngScript.cs" />
     <Compile Include="Assets\Scripts\0CommonSystem\PanelScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\ScriptableObjects\SO_CardItemScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Managers\CardMngScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\Managers\GameMngScript.cs" />
-    <Compile Include="Assets\Scripts\VisualNovel\ObjectScript\StoryObject\GoldGivingScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\Managers\GameMngScript.cs" />
+    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\StoryObject\GoldGivingScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\TravelNoteMngScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\RecipeBookMngScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Buttons\QuestButtonScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

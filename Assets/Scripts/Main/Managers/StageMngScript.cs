@@ -11,12 +11,9 @@ public class StageMngScript : MonoBehaviour {
     int                                     maxUnlockIndex = 5;
     int                                     nextUnblockIndex = 1;
 
-    static public int MaxUnlockIndex {
-        get => Inst.maxUnlockIndex;
-        set { Inst.maxUnlockIndex = value; }
-    }
-
-    static public int NextUnblockIndex => Inst.nextUnblockIndex;
+    static public List<StageButtonScript>   StageButtonList => Inst.stageButtonList;
+    static public int                       MaxUnlockIndex { get => Inst.maxUnlockIndex; set { Inst.maxUnlockIndex = value; } }
+    static public int                       NextUnblockIndex => Inst.nextUnblockIndex;
 
     private void Awake() => Inst = this;
     private void Start() {
@@ -33,5 +30,11 @@ public class StageMngScript : MonoBehaviour {
         }
         Inst.stageButtonList[Inst.nextUnblockIndex].UnBlock();
         Inst.nextUnblockIndex++;
+    }
+
+    static public void StageClear(int _stageNum) {
+        StageButtonList[_stageNum].IsCleared = true;
+        UnBlockNext();
+        MainGameMngScript.DotoriNum.Value++;
     }
 }

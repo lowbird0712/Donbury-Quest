@@ -7,6 +7,7 @@ using UniRx;
 public class MainGameMngScript : MonoBehaviour {
     static public MainGameMngScript Inst { get; set; } = null;
 
+    [SerializeField] GameObject             mainSceneCanvas;
     [SerializeField] PanelScript            messagePanel;
     [SerializeField] Text                   dotoriNumText; 
     [SerializeField] GameObject             calander;
@@ -18,21 +19,22 @@ public class MainGameMngScript : MonoBehaviour {
     ReactiveProperty<int>                   dotoriNum = new ReactiveProperty<int>();
     int                                     stageNum = -1;
 
+    static public GameObject                MainSceneCanvas => Inst.mainSceneCanvas;
     static public PanelScript               MessagePanel => Inst.messagePanel;
     static public ReactiveProperty<int>     DotoriNum => Inst.dotoriNum;
     static public int                       StageNum { set { Inst.stageNum = value; } }
 
-    private void Awake() => Inst = this;
-    private void Start() {
-        dotoriNum.Subscribe(_dotoriNum => dotoriNumText.text = _dotoriNum.ToString());
+    private void Awake() {
+        Inst = this;
         dotoriNum.Value = 50; //// 테스트
     }
+    private void Start() => dotoriNum.Subscribe(_dotoriNum => dotoriNumText.text = _dotoriNum.ToString());
 
     static public void SendStageNum() {
         CardGameMngScript.StageNum = Inst.stageNum;
-        Destroy(Inst.gameObject);
+        Inst.CloseEveryUIs();
+        MainSceneCanvas.SetActive(false);
     }
-
 
     public void CalanderButton() {
         if (!isUIActive) {
@@ -76,5 +78,13 @@ public class MainGameMngScript : MonoBehaviour {
             isUIActive = false;
             box.SetActive(false);
         }
+    }
+
+    public void CloseEveryUIs() {
+        isUIActive = false;
+        calander.SetActive(false);
+        travelNote.SetActive(false);
+        recipeBook.SetActive(false);
+        box.SetActive(false);
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class PanelScript : MonoBehaviour {
-    [SerializeField] TMP_Text   textTMP;
-    [SerializeField] Text       text;
+    [SerializeField] protected TMP_Text   textTMP;
+    [SerializeField] protected Text       text;
 
     void Start() => ScaleZero();
 

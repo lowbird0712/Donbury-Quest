@@ -13,6 +13,10 @@ public class StageButtonScript : MonoBehaviour {
     [SerializeField] int    neededDotoriNum;
     [SerializeField] int    unLockRecipeIndex = -1;
 
+    bool                    isCleared = false;
+
+    public bool             IsCleared { get => isCleared; set { isCleared = value; } }
+
     private void Start() {
         stageText.text = stageNum.ToString();
         neededDotoriNumText.text = neededDotoriNum.ToString();
@@ -27,9 +31,9 @@ public class StageButtonScript : MonoBehaviour {
         }
         else if (unLockImage.IsActive()) {
             MainGameMngScript.DotoriNum.Value -= neededDotoriNum;
+            StageMngScript.UnBlockNext(); //// Å×½ºÆ®
             neededDotoriNumText.enabled = false;
             unLockImage.enabled = false;
-            StageMngScript.UnBlockNext();
             if (unLockRecipeIndex != -1)
                 RecipeBookMngScript.UnLockRecipe(unLockRecipeIndex);
             return;

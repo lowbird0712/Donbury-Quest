@@ -6,14 +6,26 @@ using UnityEngine.UI;
 public class BoxMngScript : MonoBehaviour {
     static public BoxMngScript Inst { get; set; } = null;
 
-    [SerializeField] PracticeButtonScript[] questButtons;
+    [SerializeField] QuestButtonScript[]    questButtons;
     [SerializeField] Image[]                questImages;
     [SerializeField] Text[]                 questTexts;
+
+    int                                     questStageIndex = -1;
+
+    static public int                       QuestStageIndex { get => Inst.questStageIndex; set { Inst.questStageIndex = value; } }
 
     private void Awake() => Inst = this;
     void Start() {
         gameObject.SetActive(false);
-        SetDailyQuest();
+        SetDailyQuest(); //// 추후에 하루 중 첫 접속일 때에만 실행되도록 수정
+    }
+
+    public void SetDailyQuestCheatButton() => SetDailyQuest();
+
+    static public void QuestClear() {
+        Inst.questButtons[Inst.questStageIndex].MakeClearedQuest();
+        Inst.questStageIndex = -1;
+        MainGameMngScript.DotoriNum.Value++;
     }
 
     void SetDailyQuest() {
@@ -42,6 +54,4 @@ public class BoxMngScript : MonoBehaviour {
             }
         }
     }
-
-    public void SetDailyQuestCheatButton() => SetDailyQuest();
 }
