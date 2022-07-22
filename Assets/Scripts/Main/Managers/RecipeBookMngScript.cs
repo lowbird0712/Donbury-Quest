@@ -73,7 +73,7 @@ public class RecipeBookMngScript : MonoBehaviour {
         Recipe recipe = new Recipe();
         recipe.recipeSprite = recipeSprites[0];
         recipe.recipeName = "규동 기본";
-        recipe.stageNum = 6; //// 스테이지 구성 완료 후 7로 바꿀 것
+        recipe.stageNum = 6; //// 스테이지 구성 완료 후 8로 바꿀 것
         recipe.state = RecipeState.RS_LOCKED;
         recipeList.Add(recipe);
         LeftTopRecipeIndex = 0;

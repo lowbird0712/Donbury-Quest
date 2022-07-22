@@ -57,7 +57,7 @@
     <Compile Include="Assets\Scripts\GameNovel\Player\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\0CommonSystem\InitializerScript.cs" />
     <Compile Include="Assets\Scripts\Main\Buttons\StageButtonScript.cs" />
-    <Compile Include="Assets\Scripts\GameNovel\ObjectScript\ShopObject\BuyButtonScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Buttons\BuyButtonScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\UI\TurnStartPanelScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Managers\GridObjectMngScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Board\GridObjectScript.cs" />
@@ -67,13 +67,15 @@
     <Compile Include="Assets\Scripts\GameNovel\ObjectScript\PortalObject\QuestPortalScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Card\CardScript.cs" />
     <Compile Include="Assets\Scripts\GameNovel\ObjectScript\StoryObject\QuestObjectScript.cs" />
-    <Compile Include="Assets\Scripts\Main\Managers\BoxMngScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Managers\TayuBoxMngScript.cs" />
     <Compile Include="Assets\Scripts\0CommonSystem\DotweenMovingScript.cs" />
     <Compile Include="Assets\Scripts\GameNovel\Managers\ObjectMngScript.cs" />
     <Compile Include="Assets\Scripts\GameNovel\ObjectScript\ShopObject\ShopScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Buttons\QuestButtonScript.cs" />
     <Compile Include="Assets\Scripts\GameNovel\Managers\StoryBlockMngScript.cs" />
     <Compile Include="Assets\Scripts\GameNovel\ObjectScript\PortalObject\SimplePortalScript.cs" />
     <Compile Include="Assets\Scripts\0CommonSystem\Utils.cs" />
+    <Compile Include="Assets\Scripts\Main\Managers\LinBoxMngScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Board\CardPutCoverScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Managers\CardGameMngScript.cs" />
     <Compile Include="Assets\Scripts\Main\Buttons\PracticeButtonScript.cs" />
@@ -86,13 +88,15 @@
     <Compile Include="Assets\Scripts\GameNovel\Managers\QuestMngScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\MainGameMngScript.cs" />
     <Compile Include="Assets\Scripts\0CommonSystem\PanelScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Managers\CampingShopMngScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Buttons\UseItemButtonScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\ScriptableObjects\SO_CardItemScript.cs" />
     <Compile Include="Assets\Scripts\CardGame\Managers\CardMngScript.cs" />
     <Compile Include="Assets\Scripts\GameNovel\Managers\GameMngScript.cs" />
     <Compile Include="Assets\Scripts\GameNovel\ObjectScript\StoryObject\GoldGivingScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\TravelNoteMngScript.cs" />
     <Compile Include="Assets\Scripts\Main\Managers\RecipeBookMngScript.cs" />
-    <Compile Include="Assets\Scripts\Main\Buttons\QuestButtonScript.cs" />
+    <Compile Include="Assets\Scripts\Main\Managers\CampMngScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

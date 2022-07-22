@@ -306,8 +306,8 @@ public class CardGameMngScript : MonoBehaviour {
     IEnumerator StageClearCo() {
         turnStartPanel.Show("스테이지 클리어!");
         yield return new WaitForSeconds(Utils.turnStartPanelUpDownDotweenTime * 2 + Utils.turnStartPanelAppendDotweenTIme);
-        if (BoxMngScript.QuestStageIndex != -1)
-            BoxMngScript.QuestClear();
+        if (TayuBoxMngScript.QuestStageIndex != -1)
+            TayuBoxMngScript.QuestClear();
         else if (!StageMngScript.StageButtonList[stageNum].IsCleared)
             StageMngScript.StageClear(stageNum);
         MainGameMngScript.MainSceneCanvas.SetActive(true);

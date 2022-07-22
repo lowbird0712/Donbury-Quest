@@ -19,7 +19,7 @@ public class QuestButtonScript : MonoBehaviour {
 
     public void QuestButton() {
         MainGameMngScript.StageNum = stageNum;
-        BoxMngScript.QuestStageIndex = questIndex;
+        TayuBoxMngScript.QuestStageIndex = questIndex;
         SceneManager.LoadScene("CardGameScene");
     }
 }

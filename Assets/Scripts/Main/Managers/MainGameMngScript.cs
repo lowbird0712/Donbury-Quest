@@ -13,7 +13,9 @@ public class MainGameMngScript : MonoBehaviour {
     [SerializeField] GameObject             calander;
     [SerializeField] GameObject             travelNote;
     [SerializeField] GameObject             recipeBook;
-    [SerializeField] GameObject             box;
+    [SerializeField] GameObject             tayuBox;
+    [SerializeField] GameObject             linBox;
+    [SerializeField] GameObject             campingShop;
 
     bool                                    isUIActive;
     ReactiveProperty<int>                   dotoriNum = new ReactiveProperty<int>();
@@ -34,6 +36,16 @@ public class MainGameMngScript : MonoBehaviour {
         CardGameMngScript.StageNum = Inst.stageNum;
         Inst.CloseEveryUIs();
         MainSceneCanvas.SetActive(false);
+    }
+
+    public void CloseEveryUIs() {
+        isUIActive = false;
+        calander.SetActive(false);
+        travelNote.SetActive(false);
+        recipeBook.SetActive(false);
+        tayuBox.SetActive(false);
+        linBox.SetActive(false);
+        campingShop.SetActive(false);
     }
 
     public void CalanderButton() {
@@ -69,22 +81,37 @@ public class MainGameMngScript : MonoBehaviour {
         }
     }
 
-    public void BoxButton() {
+    public void TayuBoxButton() {
         if (!isUIActive) {
             isUIActive = true;
-            box.SetActive(true);
+            tayuBox.SetActive(true);
         }
-        else if (box.activeSelf) {
+        else if (tayuBox.activeSelf) {
             isUIActive = false;
-            box.SetActive(false);
+            tayuBox.SetActive(false);
         }
     }
 
-    public void CloseEveryUIs() {
-        isUIActive = false;
-        calander.SetActive(false);
-        travelNote.SetActive(false);
-        recipeBook.SetActive(false);
-        box.SetActive(false);
+    public void LinBoxButton() {
+        if (!isUIActive) {
+            isUIActive = true;
+            linBox.GetComponent<LinBoxMngScript>().Init();
+            linBox.SetActive(true);
+        }
+        else if (linBox.activeSelf) {
+            isUIActive = false;
+            linBox.SetActive(false);
+        }
+    }
+
+    public void CampingShopButton() {
+        if (!isUIActive) {
+            isUIActive = true;
+            campingShop.SetActive(true);
+        }
+        else if (campingShop.activeSelf) {
+            isUIActive = false;
+            campingShop.SetActive(false);
+        }
     }
 }
